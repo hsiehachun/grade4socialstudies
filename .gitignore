@@ -1,0 +1,26 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+
+# Original publisher PDF textbooks & exam resources (Copyright protection & keep repo lightweight)
+課本PDF/
+教師手冊PDF/
+學習地圖/
+月考卷A/
+習作PDF/
+*卷類資源/
+*資源/
+
+# Local backup archives & scripts
+*.zip
+dist/
+build_*.py
+generate_*.py
+update_*.py

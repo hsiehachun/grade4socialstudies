@@ -1,0 +1,2222 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>國小四年級社會（四上）全冊手繪心智圖筆記系統 🌸✏️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-paper: #FDFBF7;
+            --grid-line: #EBE5DB;
+            --text-main: #1E293B;
+            --card-shadow: 6px 8px 0px #0F172A;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Zen Maru Gothic', 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-paper);
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 26px 26px;
+            color: var(--text-main);
+            line-height: 1.65;
+            padding-bottom: 90px;
+        }
+        header {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            border-bottom: 3.5px dashed #CBD5E1;
+            padding: 22px 16px 16px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        }
+        .header-title-box {
+            display: inline-block;
+            background: #FEF9C3;
+            border: 3px solid #CA8A04;
+            padding: 10px 28px;
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+            box-shadow: 3px 5px 0px #CA8A04;
+            margin-bottom: 10px;
+        }
+        h1 { font-size: 1.7rem; color: #854D0E; font-weight: 900; }
+        .header-desc {
+            font-size: 0.96rem;
+            color: #475569;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        /* Mode Switcher Tabs */
+        .mode-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        .mode-tab-btn {
+            background: #EDE9FE;
+            border: 2.5px solid #8B5CF6;
+            color: #6D28D9;
+            padding: 8px 20px;
+            border-radius: 22px;
+            font-size: 0.95rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .mode-tab-btn.active {
+            background: #7C3AED;
+            color: white;
+            box-shadow: 2px 4px 0px #4C1D95;
+            transform: translateY(-2px);
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            max-width: 1100px;
+            margin: 6px auto 10px;
+        }
+        .filter-btn {
+            background: #F1F5F9;
+            border: 2px solid #94A3B8;
+            padding: 5px 13px;
+            border-radius: 20px;
+            font-size: 0.88rem;
+            font-weight: 800;
+            cursor: pointer;
+            color: #334155;
+            transition: all 0.2s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: #F59E0B;
+            border-color: #B45309;
+            color: white;
+            box-shadow: 2px 3px 0px #B45309;
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            max-width: 1060px;
+            margin: 32px auto;
+            padding: 0 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 52px;
+        }
+        
+        .sketchnote-card {
+            background: #FFFFFF;
+            border: 3.5px solid #0F172A;
+            border-radius: 28px;
+            padding: 30px 26px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+        }
+
+        /* Washi Tape Stickers */
+        .washi-tape {
+            position: absolute;
+            width: 115px;
+            height: 30px;
+            opacity: 0.85;
+            z-index: 10;
+        }
+        .washi-top-left {
+            top: -14px;
+            left: 36px;
+            background: #FDE047;
+            transform: rotate(-4deg);
+            border-left: 2px dashed rgba(0,0,0,0.15);
+            border-right: 2px dashed rgba(0,0,0,0.15);
+        }
+        .washi-top-right {
+            top: -14px;
+            right: 36px;
+            background: #FDA4AF;
+            transform: rotate(3deg);
+            border-left: 2px dashed rgba(0,0,0,0.15);
+            border-right: 2px dashed rgba(0,0,0,0.15);
+        }
+
+        .card-header-box {
+            border-bottom: 2px dashed #CBD5E1;
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+        .card-group-tag {
+            font-size: 0.9rem;
+            color: #B45309;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+        .card-title-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        .card-badge {
+            background: #0284C7;
+            color: white;
+            padding: 4px 14px;
+            border-radius: 14px;
+            font-size: 0.88rem;
+            font-weight: 800;
+        }
+        .card-title {
+            font-size: 1.55rem;
+            font-weight: 900;
+            color: #0F172A;
+        }
+        .card-en-title {
+            font-size: 0.95rem;
+            color: #64748B;
+            font-weight: 700;
+        }
+        .card-subtitle {
+            font-size: 0.98rem;
+            color: #475569;
+            font-weight: 500;
+        }
+
+        /* Image Showcase */
+        .image-showcase-box {
+            background: #FAF8F5;
+            border: 2px solid #E2E8F0;
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 26px;
+            text-align: center;
+        }
+        .image-wrapper {
+            overflow: hidden;
+            border-radius: 18px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            border: 2.8px solid #CBD5E1;
+            background: #FFF;
+            cursor: pointer;
+            position: relative;
+        }
+        .doodle-image {
+            width: 100%;
+            max-width: 960px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            transition: transform 0.3s ease;
+        }
+        .image-wrapper:hover .doodle-image {
+            transform: scale(1.015);
+        }
+        .zoom-hint {
+            position: absolute;
+            bottom: 8px;
+            right: 12px;
+            background: rgba(15, 23, 42, 0.7);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+        .image-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 14px;
+            padding: 0 4px;
+        }
+        .image-tip {
+            font-size: 0.9rem;
+            color: #64748B;
+            font-weight: 600;
+        }
+        .action-btn {
+            background: #F8FAFC;
+            border: 1.8px solid #94A3B8;
+            padding: 6px 14px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            color: #334155;
+            transition: all 0.2s;
+        }
+        .action-btn:hover {
+            background: #E2E8F0;
+            color: #0F172A;
+        }
+
+        /* Mind Grid */
+        .mind-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 18px;
+            margin-bottom: 26px;
+        }
+        .mind-branch {
+            border: 2.5px solid;
+            border-radius: 20px;
+            padding: 18px;
+            box-shadow: 3px 4px 0px rgba(0,0,0,0.05);
+        }
+        .branch-title {
+            font-weight: 900;
+            color: #0F172A;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1rem;
+        }
+        .branch-num-badge {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 28px;
+            height: 28px;
+            color: white;
+            border-radius: 50%;
+            font-size: 0.9rem;
+            font-weight: 900;
+        }
+        .branch-elements-tag {
+            font-size: 0.82rem;
+            color: #475569;
+            background: rgba(255,255,255,0.7);
+            padding: 3px 8px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .branch-content ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .branch-content li {
+            margin-bottom: 8px;
+            font-size: 0.94rem;
+            line-height: 1.55;
+            color: #334155;
+            position: relative;
+            padding-left: 18px;
+        }
+        .branch-content li::before {
+            content: "•";
+            position: absolute;
+            left: 4px;
+            color: #64748B;
+            font-weight: bold;
+        }
+
+        /* Feature Row: Mnemonic & Misconceptions */
+        .feature-row {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+        @media (max-width: 800px) {
+            .feature-row { grid-template-columns: 1fr; }
+        }
+        .sticky-mnemonic {
+            background: #FEF9C3;
+            border: 2.5px dashed #EAB308;
+            border-radius: 20px;
+            padding: 18px;
+            position: relative;
+            box-shadow: 3px 4px 0px #FDE047;
+        }
+        .sticky-pin {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            font-size: 1.3rem;
+        }
+        .sticky-title {
+            font-weight: 900;
+            color: #854D0E;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+        .sticky-body {
+            font-size: 1.05rem;
+            color: #713F12;
+            font-weight: 700;
+            line-height: 1.6;
+        }
+
+        .misconception-box {
+            background: #FFF1F2;
+            border: 2.5px solid #FDA4AF;
+            border-radius: 20px;
+            padding: 18px;
+            box-shadow: 3px 4px 0px #FECDD3;
+        }
+        .misconception-title {
+            font-weight: 900;
+            color: #BE123C;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+        .misconception-item {
+            margin-bottom: 10px;
+            font-size: 0.92rem;
+            line-height: 1.5;
+            background: rgba(255,255,255,0.7);
+            padding: 8px 12px;
+            border-radius: 12px;
+        }
+        .wrong-line { color: #E11D48; margin-bottom: 4px; }
+        .right-line { color: #059669; }
+
+        /* Quiz */
+        .quiz-container {
+            background: #F0FDF4;
+            border: 2.5px solid #86EFAC;
+            border-radius: 20px;
+            padding: 18px 22px;
+            box-shadow: 3px 4px 0px #BBF7D0;
+        }
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .quiz-q-box {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .quiz-badge {
+            background: #16A34A;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 800;
+        }
+        .quiz-q-text {
+            font-weight: 700;
+            color: #14532D;
+            font-size: 1.02rem;
+        }
+        .quiz-toggle-btn {
+            background: #22C55E;
+            color: white;
+            border: none;
+            padding: 7px 18px;
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            cursor: pointer;
+            box-shadow: 2px 3px 0px #15803D;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .quiz-toggle-btn:hover { background: #16A34A; transform: translateY(-1px); }
+        .quiz-ans-text {
+            display: none;
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 2px dashed #86EFAC;
+            color: #14532D;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Modal for Enlarged Image */
+        #imgModal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        #imgModal img {
+            max-width: 92vw;
+            max-height: 92vh;
+            border-radius: 18px;
+            border: 4px solid #FFF;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+        #modalClose {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Toast */
+        #toast {
+            visibility: hidden;
+            min-width: 260px;
+            background-color: #0F172A;
+            color: #fff;
+            text-align: center;
+            border-radius: 14px;
+            padding: 12px 22px;
+            position: fixed;
+            z-index: 999;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        }
+        #toast.show {
+            visibility: visible;
+            animation: fadein 0.3s, fadeout 0.3s 2.5s;
+        }
+        @keyframes fadein { from { bottom: 0; opacity: 0; } to { bottom: 30px; opacity: 1; } }
+        @keyframes fadeout { from { bottom: 30px; opacity: 1; } to { bottom: 0; opacity: 0; } }
+
+        /* Print Mode */
+        @media print {
+            header { position: static; box-shadow: none; border-bottom: 2px solid #000; }
+            .mode-tabs, .filter-bar, .image-actions, .quiz-toggle-btn, .zoom-hint { display: none !important; }
+            .sketchnote-card { page-break-after: always; box-shadow: none; border: 2px solid #000; display: block !important; }
+            .quiz-ans-text { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-title-box">
+        <h1>🌸 國小四年級社會（四上）全冊手繪心智圖筆記系統 ✏️</h1>
+    </div>
+    <div class="header-desc">
+        臺灣 108 課綱南一／康軒／翰林適用 ‧ 14 張 AI 原生手繪粉彩心智圖卡 ‧ 4 大單元總覽 + 10 個小單元精讀
+    </div>
+    
+    <!-- View Mode Switcher -->
+    <div class="mode-tabs">
+        <button id="tabSubunits" class="mode-tab-btn active" onclick="switchMode('subunits')">🌈 全 10 個小單元精讀心智圖 (10)</button>
+        <button id="tabMajor" class="mode-tab-btn" onclick="switchMode('major')">🌟 4 大單元全冊總覽心智圖 (4)</button>
+    </div>
+
+    <!-- Subunit Filters -->
+    <div id="subFilterBar" class="filter-bar">
+        <button class="filter-btn active" onclick="filterSubunits('all', this)">全部小單元</button>
+        <button class="filter-btn" onclick="filterSubunits('1', this)">🚗 第 1 單元 交通與訊息 (3)</button>
+        <button class="filter-btn" onclick="filterSubunits('2', this)">🗺️ 第 2 單元 地圖上的家鄉 (2)</button>
+        <button class="filter-btn" onclick="filterSubunits('3', this)">🏞️ 第 3 單元 認識家鄉景觀 (2)</button>
+        <button class="filter-btn" onclick="filterSubunits('4', this)">🏮 第 4 單元 家鄉的節慶 (3)</button>
+    </div>
+</header>
+
+<main class="main-content">
+    <!-- Major Units Section -->
+    <section id="majorSection" style="display:none; display:flex; flex-direction:column; gap:52px;">
+        
+    <article id="major-M1" class="sketchnote-card card-major unit-group-1">
+        <div class="washi-tape washi-top-left"></div>
+        <div class="washi-tape washi-top-right"></div>
+
+        <div class="card-header-box">
+            <div class="card-group-tag">🌟 全冊單元大總覽</div>
+            <div class="card-title-group">
+                <span class="card-badge">單元大架構</span>
+                <h2 class="card-title">交通與訊息</h2>
+                <span class="card-en-title">(TRANSPORTATION & COMMUNICATION)</span>
+            </div>
+            <p class="card-subtitle">陸海空現代交通發展、歷史變遷與智慧數位訊息傳播</p>
+        </div>
+
+        <!-- Image Box -->
+        <div class="image-showcase-box">
+            <div class="image-wrapper" onclick="openModal('images/card_major_1.png')" title="點擊放大檢視原圖">
+                <img src="images/card_major_1.png" alt="第1單元 交通與訊息 手繪彩色鉛筆心智圖" class="doodle-image" loading="lazy">
+                <div class="zoom-hint">🔍 點擊圖片可放大高解析度檢視</div>
+            </div>
+            <div class="image-actions">
+                <span class="image-tip">🎨 100% 國小四年級社會課綱手繪彩色鉛筆粉彩心智圖（AI 生成原畫）</span>
+                <button class="action-btn copy-prompt-btn" onclick="copyPrompt('Children\'s colored pencil drawing sketchnote mind map about Grade 4 Social Studies 第1單元: \'第1單元 交通與訊息\' (TRANSPORTATION & COMMUNICATION) strictly based on Taiwan Elementary School textbook. Authentic hand-drawn doodle style on cream watercolor paper, soft pastel watercolor washes, colored pencil sketch outlines. In the center, a beautiful curved rainbow gradient ribbon banner with Traditional Chinese lettering \'國小四年級社會 第1單元 交通與訊息 TRANSPORTATION & COMMUNICATION\'. Divided into 4 cute quadrant sections with numbered titles: 1. 1. 陸地運輸大動脈 (Land Transport): 高鐵高速列車、捷運地下鐵、公路幸福巴士、物流貨車 2. 2. 船運港口與水運 (Maritime Shipping): 古早河運商船、國際貨櫃輪、豪華觀光郵輪、離島交通客船 3. 3. 藍天飛航萬里行 (Air Aviation): 客運民航機、離島定期螺旋槳飛機、空中緊急救護直升機 4. 4. 數位時代智慧通 (Information & Media): 信鴿驛站、復古電報機、智慧手機、地震告警廣播、查證放大鏡. Kawaii aesthetic, smiling cute objects with rosy cheeks, soft pastel colors, educational children\'s textbook illustration.', this)">📋 複製 AI 繪圖 Prompt</button>
+            </div>
+        </div>
+
+        <!-- 4 Quadrants -->
+        <div class="mind-grid">
+            
+        <div class="mind-branch" style="background:#FEF9E7; border-color:#EAB308;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#CA8A04;">1</span>
+                <span>1. 陸地運輸大動脈 (Land Transport)</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：高鐵高速列車、捷運地下鐵、公路幸福巴士、物流貨車</div>
+            <div class="branch-content">
+                <ul><li>鐵道演進：蒸汽火車 → 柴油火車 → 電氣化鐵路 → 高速鐵路（打造北高一日生活圈）。</li><li>捷運系統：班次密集、準時省時、轉乘便利，減少都會塞車與空氣汙染。</li><li>公路網絡：機動性高、服務範圍廣，高速公路運貨，偏鄉幸福巴士深入社區。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0F9FF; border-color:#38BDF8;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#0284C7;">2</span>
+                <span>2. 船運港口與水運 (Maritime Shipping)</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：古早河運商船、國際貨櫃輪、豪華觀光郵輪、離島交通客船</div>
+            <div class="branch-content">
+                <ul><li>河運變遷：早期淡水河運帶動新莊老街；現今泥沙淤積航運沒落，轉型月津港、愛河觀光。</li><li>海運功能：臺灣四面環海，商人託運貨櫃輪、觀光客搭郵輪出海旅遊。</li><li>離島連繫：澎湖、金門、馬祖、綠島與蘭嶼日常仰賴交通船採買與就醫。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0FDF4; border-color:#4ADE80;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#16A34A;">3</span>
+                <span>3. 藍天飛航萬里行 (Air Aviation)</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：客運民航機、離島定期螺旋槳飛機、空中緊急救護直升機</div>
+            <div class="branch-content">
+                <ul><li>空運特色：運輸速度最快、票價最高，主要承擔國際遠程與高價值急件。</li><li>本島航線沒落：西部城市間國內航線因高鐵與高速公路進步而停飛退場。</li><li>離島與急難救援：穩定維持離島就學觀光；重大傷病由直升機緊急後送。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#FFF1F2; border-color:#FB7185;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#E11D48;">4</span>
+                <span>4. 數位時代智慧通 (Information & Media)</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：信鴿驛站、復古電報機、智慧手機、地震告警廣播、查證放大鏡</div>
+            <div class="branch-content">
+                <ul><li>傳播變遷：信鴿驛站 → 電報書信（費用高耗時長） → 手機與網路（即時無國界）。</li><li>生活與防災：視訊遠距醫療、國家級災害防救警報（地震速報爭取避難時間）。</li><li>數位素養：眼見不一定為憑，收到訊息「先查證、不亂傳」，保護隱私與重視實體交流。</li></ul>
+            </div>
+        </div>
+        
+        </div>
+
+        <!-- Mnemonic & Misconceptions -->
+        <div class="feature-row">
+            <div class="sticky-mnemonic">
+                <div class="sticky-pin">📌</div>
+                <div class="sticky-title">💡 朗朗上口記憶口訣</div>
+                <div class="sticky-body">「鐵公路串聯全臺跑，高鐵一日生活好；船運空運通離島，查證訊息不亂導！」</div>
+            </div>
+
+            <div class="misconception-box">
+                <div class="misconception-title">🛡️ 易錯迷思避雷針（段考必背考點）</div>
+                
+        <div class="misconception-item">
+            <div class="wrong-line">❌ <strong>常見迷思：</strong>臺灣本島各城市間目前仍然廣泛搭乘國內飛機往返？</div>
+            <div class="right-line">✔️ <strong>觀念釐清：</strong>錯誤！因高鐵與高速公路非常進步快速，本島西部城市間國內航空已全數停飛。</div>
+        </div>
+        
+            </div>
+        </div>
+
+        <!-- Quiz -->
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <div class="quiz-q-box">
+                    <span class="quiz-badge">⭐ 隨堂快問快答</span>
+                    <span class="quiz-q-text">請問將臺灣西部各大都會串聯成「一日生活圈」，且速度最快的陸上軌道交通工具是什麼？</span>
+                </div>
+                <button class="quiz-toggle-btn" onclick="toggleQuiz('q_major-M1')">點我看解答 👀</button>
+            </div>
+            <div id="q_major-M1" class="quiz-ans-text">
+                🎉 <strong>標準解答與解析：</strong>高速鐵路（高鐵）！
+            </div>
+        </div>
+    </article>
+    
+
+    <article id="major-M2" class="sketchnote-card card-major unit-group-2">
+        <div class="washi-tape washi-top-left"></div>
+        <div class="washi-tape washi-top-right"></div>
+
+        <div class="card-header-box">
+            <div class="card-group-tag">🌟 全冊單元大總覽</div>
+            <div class="card-title-group">
+                <span class="card-badge">單元大架構</span>
+                <h2 class="card-title">地圖上的家鄉</h2>
+                <span class="card-en-title">(HOMETOWN ON THE MAP)</span>
+            </div>
+            <p class="card-subtitle">學會四大地圖基本要素、八方位辨識、各類專題地圖與智慧導航探索</p>
+        </div>
+
+        <!-- Image Box -->
+        <div class="image-showcase-box">
+            <div class="image-wrapper" onclick="openModal('images/card_major_2.png')" title="點擊放大檢視原圖">
+                <img src="images/card_major_2.png" alt="第2單元 地圖上的家鄉 手繪彩色鉛筆心智圖" class="doodle-image" loading="lazy">
+                <div class="zoom-hint">🔍 點擊圖片可放大高解析度檢視</div>
+            </div>
+            <div class="image-actions">
+                <span class="image-tip">🎨 100% 國小四年級社會課綱手繪彩色鉛筆粉彩心智圖（AI 生成原畫）</span>
+                <button class="action-btn copy-prompt-btn" onclick="copyPrompt('Children\'s colored pencil drawing sketchnote mind map about Grade 4 Social Studies 第2單元: \'第2單元 地圖上的家鄉\' (HOMETOWN ON THE MAP) strictly based on Taiwan Elementary School textbook. Authentic hand-drawn doodle style on cream watercolor paper, soft pastel watercolor washes, colored pencil sketch outlines. In the center, a beautiful curved rainbow gradient ribbon banner with Traditional Chinese lettering \'國小四年級社會 第2單元 地圖上的家鄉 HOMETOWN ON THE MAP\'. Divided into 4 cute quadrant sections with numbered titles: 1. 1. 地圖四大基本要素 (4 Map Elements): 地圖圖名卷軸、方位標指北針、圖例說明對照表、比例尺測量尺規 2. 2. 八個方位精準判定 (8 Directions): 四方位十字架（東南西北）、八方位米字星芒羅盤（東北、東南、西北、西南） 3. 3. 認識各式家鄉地圖 (Diverse Maps): 等高線地形圖、彩色行政區域圖、觀光美食導覽圖、空拍衛星影像圖 4. 4. 活用電子地圖探索 (Digital Navigation): 智慧手機地圖App、GPS定位藍點、行程時間預估、探究路線圖. Kawaii aesthetic, smiling cute objects with rosy cheeks, soft pastel colors, educational children\'s textbook illustration.', this)">📋 複製 AI 繪圖 Prompt</button>
+            </div>
+        </div>
+
+        <!-- 4 Quadrants -->
+        <div class="mind-grid">
+            
+        <div class="mind-branch" style="background:#FEF9E7; border-color:#EAB308;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#CA8A04;">1</span>
+                <span>1. 地圖四大基本要素 (4 Map Elements)</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：地圖圖名卷軸、方位標指北針、圖例說明對照表、比例尺測量尺規</div>
+            <div class="branch-content">
+                <ul><li>圖名：標示地圖的主題與功能（如「埔里鎮觀光地圖」）。</li><li>方位標：標明地圖的方向，通常以箭頭指向北方（N）。</li><li>圖例：用簡潔幾何符號或圖案代表學校、醫院、火車站或道路。</li><li>比例尺：表示圖上距離與實際距離縮小比（如 1cm 代表實際 2km）。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0F9FF; border-color:#38BDF8;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#0284C7;">2</span>
+                <span>2. 八個方位精準判定 (8 Directions)</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：四方位十字架（東南西北）、八方位米字星芒羅盤（東北、東南、西北、西南）</div>
+            <div class="branch-content">
+                <ul><li>基本四方位：面對北方時，背後是南方、右東左西（上北下南右東左西）。</li><li>進階八方位：四方位之間加入「東北、東南、西北、西南」，更精確描述位置。</li><li>相對性原則：以出發點（基準點）為十字中心判定目標所在方向。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0FDF4; border-color:#4ADE80;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#16A34A;">3</span>
+                <span>3. 認識各式家鄉地圖 (Diverse Maps)</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：等高線地形圖、彩色行政區域圖、觀光美食導覽圖、空拍衛星影像圖</div>
+            <div class="branch-content">
+                <ul><li>地形圖：呈現地表高低起伏、等高線與山脈河流走向。</li><li>行政區域圖：標記鄉鎮市區範圍界線及相鄰縣市邊界。</li><li>觀光旅遊圖：標示名勝古蹟、特色美食與交通路網。</li><li>衛星影像圖：從高空拍攝真實照片，觀察建築群密度與地表紋理。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#FFF1F2; border-color:#FB7185;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#E11D48;">4</span>
+                <span>4. 活用電子地圖探索 (Digital Navigation)</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：智慧手機地圖App、GPS定位藍點、行程時間預估、探究路線圖</div>
+            <div class="branch-content">
+                <ul><li>電子地圖：搜尋目的地、GPS即時定位、自動預估步行與開車時間。</li><li>路線規劃四步法：①確認出發點與目的地 → ②判斷方位 → ③參考路名與圖例 → ④規劃順暢路線。</li></ul>
+            </div>
+        </div>
+        
+        </div>
+
+        <!-- Mnemonic & Misconceptions -->
+        <div class="feature-row">
+            <div class="sticky-mnemonic">
+                <div class="sticky-pin">📌</div>
+                <div class="sticky-title">💡 朗朗上口記憶口訣</div>
+                <div class="sticky-body">「圖名方位圖例尺，地圖四寶全認齊；八方辨位不迷路，電子導航探鄉土！」</div>
+            </div>
+
+            <div class="misconception-box">
+                <div class="misconception-title">🛡️ 易錯迷思避雷針（段考必背考點）</div>
+                
+        <div class="misconception-item">
+            <div class="wrong-line">❌ <strong>常見迷思：</strong>所有的地圖上方都一定預設為「東方」？</div>
+            <div class="right-line">✔️ <strong>觀念釐清：</strong>錯誤！地圖通常以「北方」為上方，最準確依據是看圖上的「方位標」。</div>
+        </div>
+        
+            </div>
+        </div>
+
+        <!-- Quiz -->
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <div class="quiz-q-box">
+                    <span class="quiz-badge">⭐ 隨堂快問快答</span>
+                    <span class="quiz-q-text">如果小明站在學校，火車站在學校的右上方（介於北方與東方之間），火車站位於學校的哪一個方位？</span>
+                </div>
+                <button class="quiz-toggle-btn" onclick="toggleQuiz('q_major-M2')">點我看解答 👀</button>
+            </div>
+            <div id="q_major-M2" class="quiz-ans-text">
+                🎉 <strong>標準解答與解析：</strong>東北方！
+            </div>
+        </div>
+    </article>
+    
+
+    <article id="major-M3" class="sketchnote-card card-major unit-group-3">
+        <div class="washi-tape washi-top-left"></div>
+        <div class="washi-tape washi-top-right"></div>
+
+        <div class="card-header-box">
+            <div class="card-group-tag">🌟 全冊單元大總覽</div>
+            <div class="card-title-group">
+                <span class="card-badge">單元大架構</span>
+                <h2 class="card-title">認識家鄉景觀</h2>
+                <span class="card-en-title">(HOMETOWN LANDSCAPES)</span>
+            </div>
+            <p class="card-subtitle">自然地形與氣候奇景、先民人文歷史古蹟、景觀功能變遷與活化再生</p>
+        </div>
+
+        <!-- Image Box -->
+        <div class="image-showcase-box">
+            <div class="image-wrapper" onclick="openModal('images/card_major_3.png')" title="點擊放大檢視原圖">
+                <img src="images/card_major_3.png" alt="第3單元 認識家鄉景觀 手繪彩色鉛筆心智圖" class="doodle-image" loading="lazy">
+                <div class="zoom-hint">🔍 點擊圖片可放大高解析度檢視</div>
+            </div>
+            <div class="image-actions">
+                <span class="image-tip">🎨 100% 國小四年級社會課綱手繪彩色鉛筆粉彩心智圖（AI 生成原畫）</span>
+                <button class="action-btn copy-prompt-btn" onclick="copyPrompt('Children\'s colored pencil drawing sketchnote mind map about Grade 4 Social Studies 第3單元: \'第3單元 認識家鄉景觀\' (HOMETOWN LANDSCAPES) strictly based on Taiwan Elementary School textbook. Authentic hand-drawn doodle style on cream watercolor paper, soft pastel watercolor washes, colored pencil sketch outlines. In the center, a beautiful curved rainbow gradient ribbon banner with Traditional Chinese lettering \'國小四年級社會 第3單元 認識家鄉景觀 HOMETOWN LANDSCAPES\'. Divided into 4 cute quadrant sections with numbered titles: 1. 1. 大自然鬼斧神工 (Natural Landscapes): 月世界泥岩惡地、清水斷崖蔚藍海岸、佳樂水奇岩怪石、日月潭秀麗湖泊 2. 2. 歷史人文古足跡 (Cultural Landscapes): 恆春紅磚古城門、磺溪傳統書院、艋舺龍山寺廟宇、打狗英國領事館官邸 3. 3. 景觀的功能與變遷 (Functions & Evolution): 冬山河親水公園綠帶、九份黃金瀑布解說牌、武暖石板古橋 4. 4. 活化再生愛守護 (Preservation & Care): 古城門遷入成大校園、舊糖廠鼓樂藝術村、高美濕地木棧道護蟹. Kawaii aesthetic, smiling cute objects with rosy cheeks, soft pastel colors, educational children\'s textbook illustration.', this)">📋 複製 AI 繪圖 Prompt</button>
+            </div>
+        </div>
+
+        <!-- 4 Quadrants -->
+        <div class="mind-grid">
+            
+        <div class="mind-branch" style="background:#FEF9E7; border-color:#EAB308;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#CA8A04;">1</span>
+                <span>1. 大自然鬼斧神工 (Natural Landscapes)</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：月世界泥岩惡地、清水斷崖蔚藍海岸、佳樂水奇岩怪石、日月潭秀麗湖泊</div>
+            <div class="branch-content">
+                <ul><li>成因機制：受地質岩層、河流侵蝕、雨水沖刷與氣候風化長期塑造。</li><li>著名範例：高雄月世界（雨水沖刷泥岩惡地）、花蓮清水斷崖（斷崖臨海）、屏東佳樂水。</li><li>休閒親水：南投日月潭湖光山色、新北碧潭水岸、臺東森林公園悠活綠帶。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0F9FF; border-color:#38BDF8;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#0284C7;">2</span>
+                <span>2. 歷史人文古足跡 (Cultural Landscapes)</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：恆春紅磚古城門、磺溪傳統書院、艋舺龍山寺廟宇、打狗英國領事館官邸</div>
+            <div class="branch-content">
+                <ul><li>先民開墾痕跡：防禦城郭（恆春古城門）、教育文風（磺溪書院）、信仰中心（龍山寺、大天后宮）。</li><li>歷史洋樓：高雄打狗英國領事館官邸見證早期對外通商與外交歷史。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0FDF4; border-color:#4ADE80;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#16A34A;">3</span>
+                <span>3. 景觀的功能與變遷 (Functions & Evolution)</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：冬山河親水公園綠帶、九份黃金瀑布解說牌、武暖石板古橋</div>
+            <div class="branch-content">
+                <ul><li>多元功能：休閒遊憩（冬山河親水公園）、學習教育（九份黃金瀑布）、先民智慧（武暖石板橋）。</li><li>變遷成因：經濟型態轉變、交通路線更改、人為建設或天然災害影響。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#FFF1F2; border-color:#FB7185;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#E11D48;">4</span>
+                <span>4. 活化再生愛守護 (Preservation & Care)</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：古城門遷入成大校園、舊糖廠鼓樂藝術村、高美濕地木棧道護蟹</div>
+            <div class="branch-content">
+                <ul><li>活化案例：臺南小西門城門遷至成功大學校園保存；仁德糖廠轉型為十鼓擊樂藝術村。</li><li>踏查四問：①是什麼人興建？ ②什麼時候興建？ ③名稱怎麼來的？ ④有什麼特色與歷史價值？</li></ul>
+            </div>
+        </div>
+        
+        </div>
+
+        <!-- Mnemonic & Misconceptions -->
+        <div class="feature-row">
+            <div class="sticky-mnemonic">
+                <div class="sticky-pin">📌</div>
+                <div class="sticky-title">💡 朗朗上口記憶口訣</div>
+                <div class="sticky-body">「自然奇景水石妙，人文古蹟城廟好；功能變遷重活化，踏查四問愛我家！」</div>
+            </div>
+
+            <div class="misconception-box">
+                <div class="misconception-title">🛡️ 易錯迷思避雷針（段考必背考點）</div>
+                
+        <div class="misconception-item">
+            <div class="wrong-line">❌ <strong>常見迷思：</strong>高雄月世界奇特的光禿荒涼地貌是先民過度砍伐樹木造成的？</div>
+            <div class="right-line">✔️ <strong>觀念釐清：</strong>錯誤！月世界屬於泥岩地質，是經由雨水與河水長期侵蝕沖刷形成的天然「自然景觀」。</div>
+        </div>
+        
+            </div>
+        </div>
+
+        <!-- Quiz -->
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <div class="quiz-q-box">
+                    <span class="quiz-badge">⭐ 隨堂快問快答</span>
+                    <span class="quiz-q-text">請問在進行家鄉景觀調查時，通常可以透過哪「四個核心問題」來深入了解景觀？</span>
+                </div>
+                <button class="quiz-toggle-btn" onclick="toggleQuiz('q_major-M3')">點我看解答 👀</button>
+            </div>
+            <div id="q_major-M3" class="quiz-ans-text">
+                🎉 <strong>標準解答與解析：</strong>①是什麼人興建？ ②什麼時候興建？ ③名稱怎麼來的？ ④有什麼特色與歷史價值！
+            </div>
+        </div>
+    </article>
+    
+
+    <article id="major-M4" class="sketchnote-card card-major unit-group-4">
+        <div class="washi-tape washi-top-left"></div>
+        <div class="washi-tape washi-top-right"></div>
+
+        <div class="card-header-box">
+            <div class="card-group-tag">🌟 全冊單元大總覽</div>
+            <div class="card-title-group">
+                <span class="card-badge">單元大架構</span>
+                <h2 class="card-title">家鄉的節慶</h2>
+                <span class="card-en-title">(HOMETOWN FESTIVALS)</span>
+            </div>
+            <p class="card-subtitle">漢人歲時節俗、原住民族歲時祭儀、地方特色產業節慶與現代紀念日</p>
+        </div>
+
+        <!-- Image Box -->
+        <div class="image-showcase-box">
+            <div class="image-wrapper" onclick="openModal('images/card_major_4.png')" title="點擊放大檢視原圖">
+                <img src="images/card_major_4.png" alt="第4單元 家鄉的節慶 手繪彩色鉛筆心智圖" class="doodle-image" loading="lazy">
+                <div class="zoom-hint">🔍 點擊圖片可放大高解析度檢視</div>
+            </div>
+            <div class="image-actions">
+                <span class="image-tip">🎨 100% 國小四年級社會課綱手繪彩色鉛筆粉彩心智圖（AI 生成原畫）</span>
+                <button class="action-btn copy-prompt-btn" onclick="copyPrompt('Children\'s colored pencil drawing sketchnote mind map about Grade 4 Social Studies 第4單元: \'第4單元 家鄉的節慶\' (HOMETOWN FESTIVALS) strictly based on Taiwan Elementary School textbook. Authentic hand-drawn doodle style on cream watercolor paper, soft pastel watercolor washes, colored pencil sketch outlines. In the center, a beautiful curved rainbow gradient ribbon banner with Traditional Chinese lettering \'國小四年級社會 第4單元 家鄉的節慶 HOMETOWN FESTIVALS\'. Divided into 4 cute quadrant sections with numbered titles: 1. 1. 漢人傳統歲時節慶 (Han Traditional Festivals): 春節年糕紅包長年菜、清明掃墓潤餅、端午龍舟香包粽子、中元普渡旗、中秋月餅柚子 2. 2. 原住民族歲時祭儀 (Indigenous Ceremonies): 達悟族拼板舟飛魚祭、阿美族豐年祭牽手跳舞、鄒族戰祭神聖庫巴、布農族嬰兒祭石項鍊 3. 3. 地方特色與多元節慶 (Special & Diverse Festivals): 三義木雕節雕刻刀、臺中媽祖文化節鑾轎、萬聖節南瓜燈、東南亞潑水節水槍水盆 4. 4. 現代感恩與理念紀念日 (Modern Special Days): 母親節康乃馨花束、教師節感恩卡片、國慶日國旗飛揚、世界地球日環保綠地球. Kawaii aesthetic, smiling cute objects with rosy cheeks, soft pastel colors, educational children\'s textbook illustration.', this)">📋 複製 AI 繪圖 Prompt</button>
+            </div>
+        </div>
+
+        <!-- 4 Quadrants -->
+        <div class="mind-grid">
+            
+        <div class="mind-branch" style="background:#FEF9E7; border-color:#EAB308;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#CA8A04;">1</span>
+                <span>1. 漢人傳統歲時節慶 (Han Traditional Festivals)</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：春節年糕紅包長年菜、清明掃墓潤餅、端午龍舟香包粽子、中元普渡旗、中秋月餅柚子</div>
+            <div class="branch-content">
+                <ul><li>春節：圍爐守歲（吃年糕步步高升、長年菜長壽）、初一拜年、初二回娘家、初五開工。</li><li>清明節：掃墓祭祖、整理墓園、慎終追遠與吃潤餅。</li><li>端午、中元與中秋：端午划龍舟吃粽掛艾草洗午時水防蟲；中元普渡祈平安；中秋賞月吃月餅柚子。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0F9FF; border-color:#38BDF8;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#0284C7;">2</span>
+                <span>2. 原住民族歲時祭儀 (Indigenous Ceremonies)</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：達悟族拼板舟飛魚祭、阿美族豐年祭牽手跳舞、鄒族戰祭神聖庫巴、布農族嬰兒祭石項鍊</div>
+            <div class="branch-content">
+                <ul><li>達悟族飛魚祭：敬重海洋大自然共存，遵守季節捕撈飛魚。</li><li>阿美族豐年祭：慶祝農作物豐收，族人身著傳統服飾歌舞感恩祖靈。</li><li>鄒族戰祭：男子會所（庫巴）舉行，祈求戰神庇佑族人平安與勇氣。</li><li>布農族嬰兒祭：長輩為新生嬰兒掛上石項鍊，祈求平安長大。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0FDF4; border-color:#4ADE80;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#16A34A;">3</span>
+                <span>3. 地方特色與多元節慶 (Special & Diverse Festivals)</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：三義木雕節雕刻刀、臺中媽祖文化節鑾轎、萬聖節南瓜燈、東南亞潑水節水槍水盆</div>
+            <div class="branch-content">
+                <ul><li>產業與觀光：苗栗三義國際木雕藝術節、平溪天燈節帶動地方經濟。</li><li>宗教文化：臺中媽祖國際觀光文化節、東港迎王平安祭典展現凝聚力。</li><li>外來與新住民：西方萬聖節與耶誕節；東南亞潑水節（相互祝福）與水燈節。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#FFF1F2; border-color:#FB7185;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#E11D48;">4</span>
+                <span>4. 現代感恩與理念紀念日 (Modern Special Days)</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：母親節康乃馨花束、教師節感恩卡片、國慶日國旗飛揚、世界地球日環保綠地球</div>
+            <div class="branch-content">
+                <ul><li>感恩身分：兒童節(4/4)、母親節(5月第2週日)、父親節(8/8)、教師節(9/28)、祖父母節。</li><li>國家紀念日：元旦(1/1)、雙十國慶日(10/10)。</li><li>倡導全球理念：世界地球日(4/22 環保愛地球)、國際人權日(12/10 平等反歧視)。</li></ul>
+            </div>
+        </div>
+        
+        </div>
+
+        <!-- Mnemonic & Misconceptions -->
+        <div class="feature-row">
+            <div class="sticky-mnemonic">
+                <div class="sticky-pin">📌</div>
+                <div class="sticky-title">💡 朗朗上口記憶口訣</div>
+                <div class="sticky-body">「漢人四時慶團圓，原民祭儀謝上天；特色節慶展新貌，感恩紀念護地球！」</div>
+            </div>
+
+            <div class="misconception-box">
+                <div class="misconception-title">🛡️ 易錯迷思避雷針（段考必背考點）</div>
+                
+        <div class="misconception-item">
+            <div class="wrong-line">❌ <strong>常見迷思：</strong>端午節戴香包、掛艾草和洗午時水，純粹只是迷信好玩？</div>
+            <div class="right-line">✔️ <strong>觀念釐清：</strong>錯誤！早期農曆五月氣候轉熱、蚊蟲疫病滋生，先民藉此達到驅蟲避邪與衛生保健智慧。</div>
+        </div>
+        
+            </div>
+        </div>
+
+        <!-- Quiz -->
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <div class="quiz-q-box">
+                    <span class="quiz-badge">⭐ 隨堂快問快答</span>
+                    <span class="quiz-q-text">請問在臺灣農曆五月初五端午節時，民間常見的傳統習俗有哪些？</span>
+                </div>
+                <button class="quiz-toggle-btn" onclick="toggleQuiz('q_major-M4')">點我看解答 👀</button>
+            </div>
+            <div id="q_major-M4" class="quiz-ans-text">
+                🎉 <strong>標準解答與解析：</strong>吃粽子、划龍舟、門前掛艾草菖蒲、配戴香包、立蛋以及洗午時水！
+            </div>
+        </div>
+    </article>
+    
+    </section>
+
+    <!-- Sub-units Section -->
+    <section id="subunitSection" style="display:flex; flex-direction:column; gap:52px;">
+        
+    <article id="sub-1_1" class="sketchnote-card card-subunit unit-group-1">
+        <div class="washi-tape washi-top-left"></div>
+        <div class="washi-tape washi-top-right"></div>
+
+        <div class="card-header-box">
+            <div class="card-group-tag">📁 第 1 單元 交通與訊息</div>
+            <div class="card-title-group">
+                <span class="card-badge">課次 1-1</span>
+                <h2 class="card-title">陸地的運輸</h2>
+                <span class="card-en-title">(LAND TRANSPORTATION)</span>
+            </div>
+            <p class="card-subtitle">鐵道百年演變、高鐵一日生活圈、捷運綠色通勤與綿密公路路網</p>
+        </div>
+
+        <!-- Image Box -->
+        <div class="image-showcase-box">
+            <div class="image-wrapper" onclick="openModal('images/card_1_1.png')" title="點擊放大檢視原圖">
+                <img src="images/card_1_1.png" alt="1-1 陸地的運輸 手繪彩色鉛筆心智圖" class="doodle-image" loading="lazy">
+                <div class="zoom-hint">🔍 點擊圖片可放大高解析度檢視</div>
+            </div>
+            <div class="image-actions">
+                <span class="image-tip">🎨 100% 國小四年級社會課綱手繪彩色鉛筆粉彩心智圖（AI 生成原畫）</span>
+                <button class="action-btn copy-prompt-btn" onclick="copyPrompt('Children\'s colored pencil drawing sketchnote mind map about Grade 4 Social Studies 1-1: \'1-1 陸地的運輸\' (LAND TRANSPORTATION) strictly based on Taiwan Elementary School textbook. Authentic hand-drawn doodle style on cream watercolor paper, soft pastel watercolor washes, colored pencil sketch outlines. In the center, a beautiful curved rainbow gradient ribbon banner with Traditional Chinese lettering \'國小四年級社會 1-1 陸地的運輸 LAND TRANSPORTATION\'. Divided into 4 cute quadrant sections with numbered titles: 1. 1. 鐵道百年演進: 蒸汽火車、柴油火車、電氣化列車、高速鐵路列車 2. 2. 捷運與綠色通勤: 捷運地下化列車、高架捷運車廂、悠遊卡感應閘門 3. 3. 公路網絡大動脈: 高速公路交流道、市區公車、宅配物流車、偏鄉幸福巴士 4. 4. 智慧陸運未來: 自駕智慧公車、智慧站牌即時動態、智慧號誌控制. Kawaii aesthetic, smiling cute objects with rosy cheeks, soft pastel colors, educational children\'s textbook illustration.', this)">📋 複製 AI 繪圖 Prompt</button>
+            </div>
+        </div>
+
+        <!-- 4 Quadrants -->
+        <div class="mind-grid">
+            
+        <div class="mind-branch" style="background:#FEF9E7; border-color:#EAB308;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#CA8A04;">1</span>
+                <span>1. 鐵道百年演進</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：蒸汽火車、柴油火車、電氣化列車、高速鐵路列車</div>
+            <div class="branch-content">
+                <ul><li>車型演變：蒸汽火車 $ightarrow$ 柴油火車 $ightarrow$ 電氣化鐵路 $ightarrow$ 高速鐵路。</li><li>高鐵通車：大幅縮短南北行車時間，打造臺北至高雄「一日生活圈」。</li><li>站區發展：火車站與高鐵站周邊聚集商業機能，帶動城鎮商圈蓬勃發展。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0F9FF; border-color:#38BDF8;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#0284C7;">2</span>
+                <span>2. 捷運與綠色通勤</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：捷運地下化列車、高架捷運車廂、悠遊卡感應閘門</div>
+            <div class="branch-content">
+                <ul><li>城市通勤利器：班次密集、速度快、準時不塞車，大幅減輕都會尖峰交通壓力。</li><li>轉乘整合：可無縫轉乘臺鐵、高鐵、市區公車或公共自行車（YouBike）。</li><li>環境效益：降低都會區汽機車廢氣排放，達到節能減碳與改善空氣品質目標。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0FDF4; border-color:#4ADE80;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#16A34A;">3</span>
+                <span>3. 公路網絡大動脈</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：高速公路交流道、市區公車、宅配物流車、偏鄉幸福巴士</div>
+            <div class="branch-content">
+                <ul><li>特性優勢：機動性最高、深入大街小巷，服務範圍在陸運中最為廣泛。</li><li>貨物快速流通：國道高速公路日夜運送農漁產品與工商業各類民生物資。</li><li>照顧偏鄉：政府推動「幸福巴士」與「幸福小黃」，方便偏鄉學童就學與長者就醫。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#FFF1F2; border-color:#FB7185;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#E11D48;">4</span>
+                <span>4. 智慧陸運未來</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：自駕智慧公車、智慧站牌即時動態、智慧號誌控制</div>
+            <div class="branch-content">
+                <ul><li>科技結合：智慧公車站牌提供精確到站時間，手機App隨時掌握公車動態。</li><li>未來探索：自動駕駛公車在特定路線試運行，為未來智慧交通帶來全新可能。</li></ul>
+            </div>
+        </div>
+        
+        </div>
+
+        <!-- Mnemonic & Misconceptions -->
+        <div class="feature-row">
+            <div class="sticky-mnemonic">
+                <div class="sticky-pin">📌</div>
+                <div class="sticky-title">💡 朗朗上口記憶口訣</div>
+                <div class="sticky-body">「鐵路高鐵一日通，捷運減碳不塞車；公路幸福深入鄉，智慧交通好順暢！」</div>
+            </div>
+
+            <div class="misconception-box">
+                <div class="misconception-title">🛡️ 易錯迷思避雷針（段考必背考點）</div>
+                
+        <div class="misconception-item">
+            <div class="wrong-line">❌ <strong>常見迷思：</strong>現在鐵路已經被高鐵完全取代，一般火車已經沒有人在搭了？</div>
+            <div class="right-line">✔️ <strong>觀念釐清：</strong>錯誤！臺鐵（一般火車）路線環繞全臺灣，各鄉鎮停靠站點多且票價親民，依然是通勤、通學與東部旅遊的重要交通工具。</div>
+        </div>
+        
+            </div>
+        </div>
+
+        <!-- Quiz -->
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <div class="quiz-q-box">
+                    <span class="quiz-badge">⭐ 隨堂快問快答</span>
+                    <span class="quiz-q-text">請問打造臺灣西部「一日生活圈」，將臺北到高雄通勤時間縮短至 2 小時以內的陸運工具是？</span>
+                </div>
+                <button class="quiz-toggle-btn" onclick="toggleQuiz('q_sub-1_1')">點我看解答 👀</button>
+            </div>
+            <div id="q_sub-1_1" class="quiz-ans-text">
+                🎉 <strong>標準解答與解析：</strong>高速鐵路（高鐵）！
+            </div>
+        </div>
+    </article>
+    
+
+    <article id="sub-1_2" class="sketchnote-card card-subunit unit-group-1">
+        <div class="washi-tape washi-top-left"></div>
+        <div class="washi-tape washi-top-right"></div>
+
+        <div class="card-header-box">
+            <div class="card-group-tag">📁 第 1 單元 交通與訊息</div>
+            <div class="card-title-group">
+                <span class="card-badge">課次 1-2</span>
+                <h2 class="card-title">船運與空運</h2>
+                <span class="card-en-title">(WATER & AIR TRANSPORTATION)</span>
+            </div>
+            <p class="card-subtitle">古今河港轉型、海運多元船隻、藍色公路與空中飛航救援</p>
+        </div>
+
+        <!-- Image Box -->
+        <div class="image-showcase-box">
+            <div class="image-wrapper" onclick="openModal('images/card_1_2.png')" title="點擊放大檢視原圖">
+                <img src="images/card_1_2.png" alt="1-2 船運與空運 手繪彩色鉛筆心智圖" class="doodle-image" loading="lazy">
+                <div class="zoom-hint">🔍 點擊圖片可放大高解析度檢視</div>
+            </div>
+            <div class="image-actions">
+                <span class="image-tip">🎨 100% 國小四年級社會課綱手繪彩色鉛筆粉彩心智圖（AI 生成原畫）</span>
+                <button class="action-btn copy-prompt-btn" onclick="copyPrompt('Children\'s colored pencil drawing sketchnote mind map about Grade 4 Social Studies 1-2: \'1-2 船運與空運\' (WATER & AIR TRANSPORTATION) strictly based on Taiwan Elementary School textbook. Authentic hand-drawn doodle style on cream watercolor paper, soft pastel watercolor washes, colored pencil sketch outlines. In the center, a beautiful curved rainbow gradient ribbon banner with Traditional Chinese lettering \'國小四年級社會 1-2 船運與空運 WATER & AIR TRANSPORTATION\'. Divided into 4 cute quadrant sections with numbered titles: 1. 1. 滄海桑田話河運: 古早河運商船、新莊老街碼頭、月津港親水燈節 2. 2. 港口多元海運船隻: 大型貨櫃輪、豪華國際郵輪、海軍護衛軍艦 3. 3. 離島藍色公路: 離島交通客船、運補生活物資小貨船、跨海大橋 4. 4. 藍天飛航與空運: 國際民航客機、離島定期螺旋槳客機、空中緊急醫療直升機. Kawaii aesthetic, smiling cute objects with rosy cheeks, soft pastel colors, educational children\'s textbook illustration.', this)">📋 複製 AI 繪圖 Prompt</button>
+            </div>
+        </div>
+
+        <!-- 4 Quadrants -->
+        <div class="mind-grid">
+            
+        <div class="mind-branch" style="background:#FEF9E7; border-color:#EAB308;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#CA8A04;">1</span>
+                <span>1. 滄海桑田話河運</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：古早河運商船、新莊老街碼頭、月津港親水燈節</div>
+            <div class="branch-content">
+                <ul><li>早期發達：臺灣河流密布，早期河運興盛帶動新北市新莊、艋舺等沿河市街繁榮。</li><li>泥沙淤積：隨著河道泥沙沉積與陸運興起，河運航運功能逐漸消失。</li><li>轉型觀光：許多舊河港轉型為文化休閒與觀光景點（如臺南鹽水月津港、高雄愛河）。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0F9FF; border-color:#38BDF8;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#0284C7;">2</span>
+                <span>2. 港口多元海運船隻</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：大型貨櫃輪、豪華國際郵輪、海軍護衛軍艦</div>
+            <div class="branch-content">
+                <ul><li>海洋通道：臺灣四面環海，港口擁有不同功能的船隻分工合作。</li><li>商人貨運：以大型貨櫃輪、散裝貨輪託運大宗進出口商品與工業原物料。</li><li>觀光休閒：遊客搭乘大型豪華郵輪前往國內外各地觀光度假；軍艦則負責海疆巡弋。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0FDF4; border-color:#4ADE80;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#16A34A;">3</span>
+                <span>3. 離島藍色公路</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：離島交通客船、運補生活物資小貨船、跨海大橋</div>
+            <div class="branch-content">
+                <ul><li>生命線：澎湖、金門、馬祖、綠島與蘭嶼等離島居民，高度依賴交通船。</li><li>生活功能：滿足離島居民日常通勤、通學、採買民生物資與前往本島就醫需求。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#FFF1F2; border-color:#FB7185;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#E11D48;">4</span>
+                <span>4. 藍天飛航與空運</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：國際民航客機、離島定期螺旋槳客機、空中緊急醫療直升機</div>
+            <div class="branch-content">
+                <ul><li>速度最快票價最高：適合跨國遠程航行及高經濟價值、時效性緊急的貨物。</li><li>本島航線沒落：西部走廊因高鐵及高速公路興起，國內航空客運需求大幅降低而停飛。</li><li>離島定期航班與後送：維持離島與本島交通；遇急難危重病患時由空中直升機緊急送醫。</li></ul>
+            </div>
+        </div>
+        
+        </div>
+
+        <!-- Mnemonic & Misconceptions -->
+        <div class="feature-row">
+            <div class="sticky-mnemonic">
+                <div class="sticky-pin">📌</div>
+                <div class="sticky-title">💡 朗朗上口記憶口訣</div>
+                <div class="sticky-body">「古早河港變觀光，貨輪郵輪行海洋；離島交通船維生，飛機直升機護健康！」</div>
+            </div>
+
+            <div class="misconception-box">
+                <div class="misconception-title">🛡️ 易錯迷思避雷針（段考必背考點）</div>
+                
+        <div class="misconception-item">
+            <div class="wrong-line">❌ <strong>常見迷思：</strong>臺灣本島現在搭飛機從臺北到高雄只要 50 分鐘，所以是大家最常用的通勤方式？</div>
+            <div class="right-line">✔️ <strong>觀念釐清：</strong>錯誤！自從高速鐵路通車後，本島西部城市間的國內定期客運航班皆已停飛。</div>
+        </div>
+        
+            </div>
+        </div>
+
+        <!-- Quiz -->
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <div class="quiz-q-box">
+                    <span class="quiz-badge">⭐ 隨堂快問快答</span>
+                    <span class="quiz-q-text">當離島居民遇到海上風浪過大停航，或發生緊急重大傷病時，最適合派遣哪種空運工具進行緊急後送？</span>
+                </div>
+                <button class="quiz-toggle-btn" onclick="toggleQuiz('q_sub-1_2')">點我看解答 👀</button>
+            </div>
+            <div id="q_sub-1_2" class="quiz-ans-text">
+                🎉 <strong>標準解答與解析：</strong>直升機（空中緊急救護直升機）！
+            </div>
+        </div>
+    </article>
+    
+
+    <article id="sub-1_3" class="sketchnote-card card-subunit unit-group-1">
+        <div class="washi-tape washi-top-left"></div>
+        <div class="washi-tape washi-top-right"></div>
+
+        <div class="card-header-box">
+            <div class="card-group-tag">📁 第 1 單元 交通與訊息</div>
+            <div class="card-title-group">
+                <span class="card-badge">課次 1-3</span>
+                <h2 class="card-title">訊息的傳播</h2>
+                <span class="card-en-title">(INFORMATION & COMMUNICATION)</span>
+            </div>
+            <p class="card-subtitle">古今傳播演進、智慧醫療照護、國家防災告警與數位假訊息查證</p>
+        </div>
+
+        <!-- Image Box -->
+        <div class="image-showcase-box">
+            <div class="image-wrapper" onclick="openModal('images/card_1_3.png')" title="點擊放大檢視原圖">
+                <img src="images/card_1_3.png" alt="1-3 訊息的傳播 手繪彩色鉛筆心智圖" class="doodle-image" loading="lazy">
+                <div class="zoom-hint">🔍 點擊圖片可放大高解析度檢視</div>
+            </div>
+            <div class="image-actions">
+                <span class="image-tip">🎨 100% 國小四年級社會課綱手繪彩色鉛筆粉彩心智圖（AI 生成原畫）</span>
+                <button class="action-btn copy-prompt-btn" onclick="copyPrompt('Children\'s colored pencil drawing sketchnote mind map about Grade 4 Social Studies 1-3: \'1-3 訊息的傳播\' (INFORMATION & COMMUNICATION) strictly based on Taiwan Elementary School textbook. Authentic hand-drawn doodle style on cream watercolor paper, soft pastel watercolor washes, colored pencil sketch outlines. In the center, a beautiful curved rainbow gradient ribbon banner with Traditional Chinese lettering \'國小四年級社會 1-3 訊息的傳播 INFORMATION & COMMUNICATION\'. Divided into 4 cute quadrant sections with numbered titles: 1. 1. 古今通訊大躍進: 古代飛鴿與信差驛站、復古電報機、傳統信件、現代智慧型手機 2. 2. 生活與智慧醫療照護: 長者智慧健康手環、遠距視訊診療螢幕、家庭關懷App 3. 3. 國家防災避難告警: 手機國家級地震警報視窗、電視跑馬燈、防空避難警報器 4. 4. 數位公民素養與查證: 事實查核放大鏡、密碼鎖隱私盾牌、假訊息警示標籤. Kawaii aesthetic, smiling cute objects with rosy cheeks, soft pastel colors, educational children\'s textbook illustration.', this)">📋 複製 AI 繪圖 Prompt</button>
+            </div>
+        </div>
+
+        <!-- 4 Quadrants -->
+        <div class="mind-grid">
+            
+        <div class="mind-branch" style="background:#FEF9E7; border-color:#EAB308;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#CA8A04;">1</span>
+                <span>1. 古今通訊大躍進</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：古代飛鴿與信差驛站、復古電報機、傳統信件、現代智慧型手機</div>
+            <div class="branch-content">
+                <ul><li>傳播方式演進：語言手勢 $ightarrow$ 信鴿驛站 $ightarrow$ 電報書信（費用高、耗時長） $ightarrow$ 電腦與手機。</li><li>即時無距離：現代網路能隨時隨地收發圖文、影音視訊，工作不受距離限制。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0F9FF; border-color:#38BDF8;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#0284C7;">2</span>
+                <span>2. 生活與智慧醫療照護</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：長者智慧健康手環、遠距視訊診療螢幕、家庭關懷App</div>
+            <div class="branch-content">
+                <ul><li>提升效率：訊息傳播擴大生活交友圈、提供便捷工作與學習管道。</li><li>遠距醫療照護：透過穿戴式智慧手錶、遠距監控設備，能即時掌握獨居長者與孩童安全健康。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0FDF4; border-color:#4ADE80;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#16A34A;">3</span>
+                <span>3. 國家防災避難告警</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：手機國家級地震警報視窗、電視跑馬燈、防空避難警報器</div>
+            <div class="branch-content">
+                <ul><li>即時預警：臺灣常有地震與颱風，政府透過手機廣播發送國家級災害防救告警。</li><li>爭取生機：地震速報能在強震到達前數秒預警，爭取「趴下、掩護、穩住」的黃金避難時間。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#FFF1F2; border-color:#FB7185;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#E11D48;">4</span>
+                <span>4. 數位公民素養與查證</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：事實查核放大鏡、密碼鎖隱私盾牌、假訊息警示標籤</div>
+            <div class="branch-content">
+                <ul><li>辨別真假訊息：眼見不一定為憑，收到驚悚訊息「先查證來源、不盲目轉傳」。</li><li>網路禮節與隱私：使用公共電腦記得登出帳號，保護個人隱私，並重視與親友實體互動。</li></ul>
+            </div>
+        </div>
+        
+        </div>
+
+        <!-- Mnemonic & Misconceptions -->
+        <div class="feature-row">
+            <div class="sticky-mnemonic">
+                <div class="sticky-pin">📌</div>
+                <div class="sticky-title">💡 朗朗上口記憶口訣</div>
+                <div class="sticky-body">「古今通訊千里牽，視訊醫療保平安；防災警報爭秒數，查證真假不亂傳！」</div>
+            </div>
+
+            <div class="misconception-box">
+                <div class="misconception-title">🛡️ 易錯迷思避雷針（段考必背考點）</div>
+                
+        <div class="misconception-item">
+            <div class="wrong-line">❌ <strong>常見迷思：</strong>在 LINE 上看到朋友傳來的影片，因為有圖有影片所以絕對不會是造假的？</div>
+            <div class="right-line">✔️ <strong>觀念釐清：</strong>錯誤！現代科技容易剪輯或後製影片與圖片，應抱持懷疑態度，透過官方事實查核平臺求證，不可全然相信。</div>
+        </div>
+        
+            </div>
+        </div>
+
+        <!-- Quiz -->
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <div class="quiz-q-box">
+                    <span class="quiz-badge">⭐ 隨堂快問快答</span>
+                    <span class="quiz-q-text">當手機突然響起「國家級警報」通知即將發生強震時，我們在室內應立刻採取的標準避難三步驟是？</span>
+                </div>
+                <button class="quiz-toggle-btn" onclick="toggleQuiz('q_sub-1_3')">點我看解答 👀</button>
+            </div>
+            <div id="q_sub-1_3" class="quiz-ans-text">
+                🎉 <strong>標準解答與解析：</strong>趴下（Drop）、掩護（Cover）、穩住（Hold on）！
+            </div>
+        </div>
+    </article>
+    
+
+    <article id="sub-2_1" class="sketchnote-card card-subunit unit-group-2">
+        <div class="washi-tape washi-top-left"></div>
+        <div class="washi-tape washi-top-right"></div>
+
+        <div class="card-header-box">
+            <div class="card-group-tag">📁 第 2 單元 地圖上的家鄉</div>
+            <div class="card-title-group">
+                <span class="card-badge">課次 2-1</span>
+                <h2 class="card-title">閱讀地圖認識家鄉</h2>
+                <span class="card-en-title">(READING MAPS TO KNOW HOMETOWN)</span>
+            </div>
+            <p class="card-subtitle">認識家鄉定義、掌握地圖四大要素、四方位與八方位精確判定</p>
+        </div>
+
+        <!-- Image Box -->
+        <div class="image-showcase-box">
+            <div class="image-wrapper" onclick="openModal('images/card_2_1.png')" title="點擊放大檢視原圖">
+                <img src="images/card_2_1.png" alt="2-1 閱讀地圖認識家鄉 手繪彩色鉛筆心智圖" class="doodle-image" loading="lazy">
+                <div class="zoom-hint">🔍 點擊圖片可放大高解析度檢視</div>
+            </div>
+            <div class="image-actions">
+                <span class="image-tip">🎨 100% 國小四年級社會課綱手繪彩色鉛筆粉彩心智圖（AI 生成原畫）</span>
+                <button class="action-btn copy-prompt-btn" onclick="copyPrompt('Children\'s colored pencil drawing sketchnote mind map about Grade 4 Social Studies 2-1: \'2-1 閱讀地圖認識家鄉\' (READING MAPS TO KNOW HOMETOWN) strictly based on Taiwan Elementary School textbook. Authentic hand-drawn doodle style on cream watercolor paper, soft pastel watercolor washes, colored pencil sketch outlines. In the center, a beautiful curved rainbow gradient ribbon banner with Traditional Chinese lettering \'國小四年級社會 2-1 閱讀地圖認識家鄉 READING MAPS TO KNOW HOMETOWN\'. Divided into 4 cute quadrant sections with numbered titles: 1. 1. 家鄉意義與地圖四要素: 家鄉田野小鎮、圖名卷軸、方位標、圖例清單、比例尺刻度規 2. 2. 基本四方位判定: 東南西北十字指標、太陽東升西落指引 3. 3. 進階八方位精準度: 八方位星芒羅盤（東、南、西、北、東北、東南、西北、西南） 4. 4. 相對位置辨別技巧: 出發點定位標記、目標物箭頭線條、問路指引小人物. Kawaii aesthetic, smiling cute objects with rosy cheeks, soft pastel colors, educational children\'s textbook illustration.', this)">📋 複製 AI 繪圖 Prompt</button>
+            </div>
+        </div>
+
+        <!-- 4 Quadrants -->
+        <div class="mind-grid">
+            
+        <div class="mind-branch" style="background:#FEF9E7; border-color:#EAB308;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#CA8A04;">1</span>
+                <span>1. 家鄉意義與地圖四要素</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：家鄉田野小鎮、圖名卷軸、方位標、圖例清單、比例尺刻度規</div>
+            <div class="branch-content">
+                <ul><li>家鄉定義：指我們出生、成長或長期居住生活的地方。</li><li>圖名：說明地圖的主題與功能（如「彰化市觀光地圖」）。</li><li>方位標：指出地圖的方向，通常有箭頭標示北方（N）。</li><li>圖例與比例尺：圖例用符號表示地物；比例尺代表圖上長度與地表實際距離的縮小比例。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0F9FF; border-color:#38BDF8;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#0284C7;">2</span>
+                <span>2. 基本四方位判定</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：東南西北十字指標、太陽東升西落指引</div>
+            <div class="branch-content">
+                <ul><li>上北下南：地圖通常上方為北方、下方為南方、右方為東方、左方為西方。</li><li>生活判定：早晨面向太陽升起的東方，背後為西方，左手為北方，右手為南方。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0FDF4; border-color:#4ADE80;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#16A34A;">3</span>
+                <span>3. 進階八方位精準度</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：八方位星芒羅盤（東、南、西、北、東北、東南、西北、西南）</div>
+            <div class="branch-content">
+                <ul><li>增加準確度：在主要四方位之間，細分出東北、東南、西北、西南四個次方位。</li><li>方位組合：介於北方與東方之間即為「東北方」，介於南方與西方之間即為「西南方」。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#FFF1F2; border-color:#FB7185;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#E11D48;">4</span>
+                <span>4. 相對位置辨別技巧</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：出發點定位標記、目標物箭頭線條、問路指引小人物</div>
+            <div class="branch-content">
+                <ul><li>基準點原則：判定方位時，必須先找到「出發點（基準點）」，再以該點為中心畫十字判定目標方位。</li><li>問路與指路：看懂地圖方位，能幫助我們在生活中為遊客指路或順利抵達目的地。</li></ul>
+            </div>
+        </div>
+        
+        </div>
+
+        <!-- Mnemonic & Misconceptions -->
+        <div class="feature-row">
+            <div class="sticky-mnemonic">
+                <div class="sticky-pin">📌</div>
+                <div class="sticky-title">💡 朗朗上口記憶口訣</div>
+                <div class="sticky-body">「圖名方位圖例尺，地圖四寶全認齊；八方辨位中心看，指路找路超容易！」</div>
+            </div>
+
+            <div class="misconception-box">
+                <div class="misconception-title">🛡️ 易錯迷思避雷針（段考必背考點）</div>
+                
+        <div class="misconception-item">
+            <div class="wrong-line">❌ <strong>常見迷思：</strong>地圖上標示比例尺「1 公分代表 2 公里」，量出圖上兩地相距 3 公分，實際距離就是 3 公里？</div>
+            <div class="right-line">✔️ <strong>觀念釐清：</strong>錯誤！圖上 3 公分代表實際距離為 3 × 2 = 6 公里。</div>
+        </div>
+        
+            </div>
+        </div>
+
+        <!-- Quiz -->
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <div class="quiz-q-box">
+                    <span class="quiz-badge">⭐ 隨堂快問快答</span>
+                    <span class="quiz-q-text">地圖四大要素中，用來將圖上距離換算成地表實際真實距離的要素是什麼？</span>
+                </div>
+                <button class="quiz-toggle-btn" onclick="toggleQuiz('q_sub-2_1')">點我看解答 👀</button>
+            </div>
+            <div id="q_sub-2_1" class="quiz-ans-text">
+                🎉 <strong>標準解答與解析：</strong>比例尺（Scale）！
+            </div>
+        </div>
+    </article>
+    
+
+    <article id="sub-2_2" class="sketchnote-card card-subunit unit-group-2">
+        <div class="washi-tape washi-top-left"></div>
+        <div class="washi-tape washi-top-right"></div>
+
+        <div class="card-header-box">
+            <div class="card-group-tag">📁 第 2 單元 地圖上的家鄉</div>
+            <div class="card-title-group">
+                <span class="card-badge">課次 2-2</span>
+                <h2 class="card-title">家鄉的地圖</h2>
+                <span class="card-en-title">(MAPS OF HOMETOWN)</span>
+            </div>
+            <p class="card-subtitle">探索各式主題地圖、高空衛星影像圖、電子地圖導航與路線規劃</p>
+        </div>
+
+        <!-- Image Box -->
+        <div class="image-showcase-box">
+            <div class="image-wrapper" onclick="openModal('images/card_2_2.png')" title="點擊放大檢視原圖">
+                <img src="images/card_2_2.png" alt="2-2 家鄉的地圖 手繪彩色鉛筆心智圖" class="doodle-image" loading="lazy">
+                <div class="zoom-hint">🔍 點擊圖片可放大高解析度檢視</div>
+            </div>
+            <div class="image-actions">
+                <span class="image-tip">🎨 100% 國小四年級社會課綱手繪彩色鉛筆粉彩心智圖（AI 生成原畫）</span>
+                <button class="action-btn copy-prompt-btn" onclick="copyPrompt('Children\'s colored pencil drawing sketchnote mind map about Grade 4 Social Studies 2-2: \'2-2 家鄉的地圖\' (MAPS OF HOMETOWN) strictly based on Taiwan Elementary School textbook. Authentic hand-drawn doodle style on cream watercolor paper, soft pastel watercolor washes, colored pencil sketch outlines. In the center, a beautiful curved rainbow gradient ribbon banner with Traditional Chinese lettering \'國小四年級社會 2-2 家鄉的地圖 MAPS OF HOMETOWN\'. Divided into 4 cute quadrant sections with numbered titles: 1. 1. 各式主題地圖: 等高線地形圖、彩色行政區域圖、觀光旅遊美食地圖 2. 2. 空拍衛星影像圖: 空拍高解析地表照片、密集的建築聚落、農田綠地紋理 3. 3. 智慧電子地圖功能: 智慧型手機Google地圖介面、GPS定位藍點、行程時間預估 4. 4. 實地探究規劃四步法: 旅行筆記本、放大鏡、標註路線圖、家鄉景點探索打卡. Kawaii aesthetic, smiling cute objects with rosy cheeks, soft pastel colors, educational children\'s textbook illustration.', this)">📋 複製 AI 繪圖 Prompt</button>
+            </div>
+        </div>
+
+        <!-- 4 Quadrants -->
+        <div class="mind-grid">
+            
+        <div class="mind-branch" style="background:#FEF9E7; border-color:#EAB308;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#CA8A04;">1</span>
+                <span>1. 各式主題地圖</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：等高線地形圖、彩色行政區域圖、觀光旅遊美食地圖</div>
+            <div class="branch-content">
+                <ul><li>地形圖：呈現家鄉地表高低起伏、山脈走勢與主要河川分布。</li><li>行政區域圖：認識家鄉鄉、鎮、市、區的管轄範圍界線與相鄰縣市。</li><li>觀光地圖：掌握家鄉名勝古蹟、自然風景、美食與旅遊推薦路線。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0F9FF; border-color:#38BDF8;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#0284C7;">2</span>
+                <span>2. 空拍衛星影像圖</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：空拍高解析地表照片、密集的建築聚落、農田綠地紋理</div>
+            <div class="branch-content">
+                <ul><li>高空俯瞰：從空中鳥瞰地表真實面貌，清晰看見道路、河流與建築群分布。</li><li>綜合認識：結合衛星影像圖能更具體了解家鄉地貌變遷與交通建設。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0FDF4; border-color:#4ADE80;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#16A34A;">3</span>
+                <span>3. 智慧電子地圖功能</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：智慧型手機Google地圖介面、GPS定位藍點、行程時間預估</div>
+            <div class="branch-content">
+                <ul><li>強大功能：即時搜尋目的地、規劃步行/大眾運輸/開車路線、預估所需交通時間。</li><li>生活應用：隨時掌握即時路況，避免塞車路段，是探索家鄉的好幫手。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#FFF1F2; border-color:#FB7185;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#E11D48;">4</span>
+                <span>4. 實地探究規劃四步法</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：旅行筆記本、放大鏡、標註路線圖、家鄉景點探索打卡</div>
+            <div class="branch-content">
+                <ul><li>規劃步驟：①確定出發點與目的地 $ightarrow$ ②判斷方位 $ightarrow$ ③參考路名與圖例 $ightarrow$ ④規劃安全路線。</li><li>實踐探究：依據踏查需求選擇合適地圖，親自走讀家鄉各個角落。</li></ul>
+            </div>
+        </div>
+        
+        </div>
+
+        <!-- Mnemonic & Misconceptions -->
+        <div class="feature-row">
+            <div class="sticky-mnemonic">
+                <div class="sticky-pin">📌</div>
+                <div class="sticky-title">💡 朗朗上口記憶口訣</div>
+                <div class="sticky-body">「地形行政觀光圖，衛星空拍看清楚；電子導航規畫快，走讀家鄉最豐富！」</div>
+            </div>
+
+            <div class="misconception-box">
+                <div class="misconception-title">🛡️ 易錯迷思避雷針（段考必背考點）</div>
+                
+        <div class="misconception-item">
+            <div class="wrong-line">❌ <strong>常見迷思：</strong>想要知道家鄉的山脈高度與河流走向，應該挑選「行政區域圖」來看？</div>
+            <div class="right-line">✔️ <strong>觀念釐清：</strong>錯誤！想要了解地表高低起伏與山河分布，應該選擇「地形圖」；行政區域圖主要是看行政界線。</div>
+        </div>
+        
+            </div>
+        </div>
+
+        <!-- Quiz -->
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <div class="quiz-q-box">
+                    <span class="quiz-badge">⭐ 隨堂快問快答</span>
+                    <span class="quiz-q-text">從空中俯瞰地面，能夠清楚看見真實建築物密集程度、農田與道路網絡分布的地圖是哪一種？</span>
+                </div>
+                <button class="quiz-toggle-btn" onclick="toggleQuiz('q_sub-2_2')">點我看解答 👀</button>
+            </div>
+            <div id="q_sub-2_2" class="quiz-ans-text">
+                🎉 <strong>標準解答與解析：</strong>衛星影像圖（衛星空拍照）！
+            </div>
+        </div>
+    </article>
+    
+
+    <article id="sub-3_1" class="sketchnote-card card-subunit unit-group-3">
+        <div class="washi-tape washi-top-left"></div>
+        <div class="washi-tape washi-top-right"></div>
+
+        <div class="card-header-box">
+            <div class="card-group-tag">📁 第 3 單元 認識家鄉景觀</div>
+            <div class="card-title-group">
+                <span class="card-badge">課次 3-1</span>
+                <h2 class="card-title">家鄉的景觀</h2>
+                <span class="card-en-title">(HOMETOWN LANDSCAPES)</span>
+            </div>
+            <p class="card-subtitle">自然侵蝕地質奇景、湖光山色生態、先民開墾古蹟與景觀歷史變遷</p>
+        </div>
+
+        <!-- Image Box -->
+        <div class="image-showcase-box">
+            <div class="image-wrapper" onclick="openModal('images/card_3_1.png')" title="點擊放大檢視原圖">
+                <img src="images/card_3_1.png" alt="3-1 家鄉的景觀 手繪彩色鉛筆心智圖" class="doodle-image" loading="lazy">
+                <div class="zoom-hint">🔍 點擊圖片可放大高解析度檢視</div>
+            </div>
+            <div class="image-actions">
+                <span class="image-tip">🎨 100% 國小四年級社會課綱手繪彩色鉛筆粉彩心智圖（AI 生成原畫）</span>
+                <button class="action-btn copy-prompt-btn" onclick="copyPrompt('Children\'s colored pencil drawing sketchnote mind map about Grade 4 Social Studies 3-1: \'3-1 家鄉的景觀\' (HOMETOWN LANDSCAPES) strictly based on Taiwan Elementary School textbook. Authentic hand-drawn doodle style on cream watercolor paper, soft pastel watercolor washes, colored pencil sketch outlines. In the center, a beautiful curved rainbow gradient ribbon banner with Traditional Chinese lettering \'國小四年級社會 3-1 家鄉的景觀 HOMETOWN LANDSCAPES\'. Divided into 4 cute quadrant sections with numbered titles: 1. 1. 大自然鬼斧神工: 月世界泥岩惡地、清水斷崖太平洋海岸、佳樂水奇岩怪石 2. 2. 秀麗湖泊與綠意森林: 南投日月潭湖景、新北碧潭吊橋、臺東森林公園琵琶湖 3. 3. 先民歷史人文足跡: 屏東恆春古城門、臺中磺溪書院、艋舺龍山寺、臺南大天后宮 4. 4. 歷史洋樓與景觀變遷: 打狗英國領事館官邸、老街紅磚洋樓、舊火車站變遷. Kawaii aesthetic, smiling cute objects with rosy cheeks, soft pastel colors, educational children\'s textbook illustration.', this)">📋 複製 AI 繪圖 Prompt</button>
+            </div>
+        </div>
+
+        <!-- 4 Quadrants -->
+        <div class="mind-grid">
+            
+        <div class="mind-branch" style="background:#FEF9E7; border-color:#EAB308;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#CA8A04;">1</span>
+                <span>1. 大自然鬼斧神工</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：月世界泥岩惡地、清水斷崖太平洋海岸、佳樂水奇岩怪石</div>
+            <div class="branch-content">
+                <ul><li>自然成因：受地質岩層、河流侵蝕、雨水沖刷與海浪風化等大自然力量塑造。</li><li>著名景觀：高雄月世界（雨水沖刷泥岩特殊惡地）、花蓮清水斷崖（海天一色斷崖峭壁）、屏東佳樂水。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0F9FF; border-color:#38BDF8;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#0284C7;">2</span>
+                <span>2. 秀麗湖泊與綠意森林</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：南投日月潭湖景、新北碧潭吊橋、臺東森林公園琵琶湖</div>
+            <div class="branch-content">
+                <ul><li>休閒親水：南投日月潭湖光山色、新北市碧潭水岸提供居民遊憩划船。</li><li>城市綠肺：臺東森林公園擁有茂密木麻黃防風林與湖泊，適合騎單車親近大自然。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0FDF4; border-color:#4ADE80;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#16A34A;">3</span>
+                <span>3. 先民歷史人文足跡</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：屏東恆春古城門、臺中磺溪書院、艋舺龍山寺、臺南大天后宮</div>
+            <div class="branch-content">
+                <ul><li>防禦城郭：屏東恆春古城門見證早期先民防衛家園的歷史。</li><li>文風與信仰：臺中磺溪書院帶動地方文教；艋舺龍山寺與臺南大天后宮是先民信仰中心。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#FFF1F2; border-color:#FB7185;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#E11D48;">4</span>
+                <span>4. 歷史洋樓與景觀變遷</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：打狗英國領事館官邸、老街紅磚洋樓、舊火車站變遷</div>
+            <div class="branch-content">
+                <ul><li>通商歷史：高雄打狗英國領事館官邸見證臺灣早期對外通商與外交往來。</li><li>變遷因素：人為開發建設、經濟型態轉型、交通改道或地震颱風等天然災害，促使景觀不斷改變。</li></ul>
+            </div>
+        </div>
+        
+        </div>
+
+        <!-- Mnemonic & Misconceptions -->
+        <div class="feature-row">
+            <div class="sticky-mnemonic">
+                <div class="sticky-pin">📌</div>
+                <div class="sticky-title">💡 朗朗上口記憶口訣</div>
+                <div class="sticky-body">「月世界崖湖水清，古城書院寺廟靈；自然人文皆珍貴，世代變遷見真情！」</div>
+            </div>
+
+            <div class="misconception-box">
+                <div class="misconception-title">🛡️ 易錯迷思避雷針（段考必背考點）</div>
+                
+        <div class="misconception-item">
+            <div class="wrong-line">❌ <strong>常見迷思：</strong>自然景觀一旦形成之後就永遠不會發生任何改變？</div>
+            <div class="right-line">✔️ <strong>觀念釐清：</strong>錯誤！自然景觀依然會受到長期的風化、雨水沖刷、地震或河水侵蝕等自然力量持續產生微小的改變。</div>
+        </div>
+        
+            </div>
+        </div>
+
+        <!-- Quiz -->
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <div class="quiz-q-box">
+                    <span class="quiz-badge">⭐ 隨堂快問快答</span>
+                    <span class="quiz-q-text">位於高雄市，因泥岩地質經雨水與河水長期侵蝕沖刷，形成寸草不生、有如月球表面特殊惡地景觀的地點是？</span>
+                </div>
+                <button class="quiz-toggle-btn" onclick="toggleQuiz('q_sub-3_1')">點我看解答 👀</button>
+            </div>
+            <div id="q_sub-3_1" class="quiz-ans-text">
+                🎉 <strong>標準解答與解析：</strong>高雄市田寮月世界！
+            </div>
+        </div>
+    </article>
+    
+
+    <article id="sub-3_2" class="sketchnote-card card-subunit unit-group-3">
+        <div class="washi-tape washi-top-left"></div>
+        <div class="washi-tape washi-top-right"></div>
+
+        <div class="card-header-box">
+            <div class="card-group-tag">📁 第 3 單元 認識家鄉景觀</div>
+            <div class="card-title-group">
+                <span class="card-badge">課次 3-2</span>
+                <h2 class="card-title">家鄉景觀與生活</h2>
+                <span class="card-en-title">(LANDSCAPES AND DAILY LIFE)</span>
+            </div>
+            <p class="card-subtitle">景觀多元功能、景觀調查四步驟、老建築活化再生與環境生態守護</p>
+        </div>
+
+        <!-- Image Box -->
+        <div class="image-showcase-box">
+            <div class="image-wrapper" onclick="openModal('images/card_3_2.png')" title="點擊放大檢視原圖">
+                <img src="images/card_3_2.png" alt="3-2 家鄉景觀與生活 手繪彩色鉛筆心智圖" class="doodle-image" loading="lazy">
+                <div class="zoom-hint">🔍 點擊圖片可放大高解析度檢視</div>
+            </div>
+            <div class="image-actions">
+                <span class="image-tip">🎨 100% 國小四年級社會課綱手繪彩色鉛筆粉彩心智圖（AI 生成原畫）</span>
+                <button class="action-btn copy-prompt-btn" onclick="copyPrompt('Children\'s colored pencil drawing sketchnote mind map about Grade 4 Social Studies 3-2: \'3-2 家鄉景觀與生活\' (LANDSCAPES AND DAILY LIFE) strictly based on Taiwan Elementary School textbook. Authentic hand-drawn doodle style on cream watercolor paper, soft pastel watercolor washes, colored pencil sketch outlines. In the center, a beautiful curved rainbow gradient ribbon banner with Traditional Chinese lettering \'國小四年級社會 3-2 家鄉景觀與生活 LANDSCAPES AND DAILY LIFE\'. Divided into 4 cute quadrant sections with numbered titles: 1. 1. 景觀多元生活功能: 冬山河親水公園、九份黃金瀑布解說牌、礁溪武暖石板橋 2. 2. 景觀調查四步驟: 踏查筆記本、耆老訪談錄音筆、歷史文獻手冊 3. 3. 老建築活化再生: 臺南小西門城門、仁德糖廠十鼓擊樂村、臺中中央公園 4. 4. 環境愛護與生態永續: 高美濕地木棧道、招潮蟹與彈塗魚生態、淨灘環保袋. Kawaii aesthetic, smiling cute objects with rosy cheeks, soft pastel colors, educational children\'s textbook illustration.', this)">📋 複製 AI 繪圖 Prompt</button>
+            </div>
+        </div>
+
+        <!-- 4 Quadrants -->
+        <div class="mind-grid">
+            
+        <div class="mind-branch" style="background:#FEF9E7; border-color:#EAB308;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#CA8A04;">1</span>
+                <span>1. 景觀多元生活功能</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：冬山河親水公園、九份黃金瀑布解說牌、礁溪武暖石板橋</div>
+            <div class="branch-content">
+                <ul><li>休閒遊憩：宜蘭冬山河親水公園兼具防洪與休閒遊憩功能。</li><li>學習教育：新北九份黃金瀑布因地下水富含礦物氧化沉澱，具備地質教學功能。</li><li>先民智慧：宜蘭礁溪武暖石板橋使用壓艙石建造，展現先民因地制宜的生活智慧。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0F9FF; border-color:#38BDF8;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#0284C7;">2</span>
+                <span>2. 景觀調查四步驟</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：踏查筆記本、耆老訪談錄音筆、歷史文獻手冊</div>
+            <div class="branch-content">
+                <ul><li>踏查四問：①是什麼人興建？ ②什麼時候興建？ ③名稱怎麼來的？ ④有什麼特色與歷史故事？</li><li>資料來源：旅遊服務中心簡介、地方文史網站、實地觀察與訪談在地耆老。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0FDF4; border-color:#4ADE80;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#16A34A;">3</span>
+                <span>3. 老建築活化再生</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：臺南小西門城門、仁德糖廠十鼓擊樂村、臺中中央公園</div>
+            <div class="branch-content">
+                <ul><li>保存與遷移：臺南小西門城門因道路拓寬搬遷至成功大學校園妥善保存。</li><li>文創賦能：臺南仁德糖廠引進十鼓擊樂團進駐，老舊糖廠變身為國際鼓樂藝術村。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#FFF1F2; border-color:#FB7185;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#E11D48;">4</span>
+                <span>4. 環境愛護與生態永續</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：高美濕地木棧道、招潮蟹與彈塗魚生態、淨灘環保袋</div>
+            <div class="branch-content">
+                <ul><li>生態共存：臺中高美濕地建造木棧道，引導遊客集中行走，保護珍貴招潮蟹生態。</li><li>人人有責：參訪景觀不亂丟垃圾、不破壞古蹟，共同守護家鄉珍貴資產。</li></ul>
+            </div>
+        </div>
+        
+        </div>
+
+        <!-- Mnemonic & Misconceptions -->
+        <div class="feature-row">
+            <div class="sticky-mnemonic">
+                <div class="sticky-pin">📌</div>
+                <div class="sticky-title">💡 朗朗上口記憶口訣</div>
+                <div class="sticky-body">「休閒教育智慧多，踏查四問故事說；糖廠城門新活化，愛護環境守家國！」</div>
+            </div>
+
+            <div class="misconception-box">
+                <div class="misconception-title">🛡️ 易錯迷思避雷針（段考必背考點）</div>
+                
+        <div class="misconception-item">
+            <div class="wrong-line">❌ <strong>常見迷思：</strong>參觀古蹟或自然景觀時，在石頭或牆壁上刻字留念是愛護家鄉的表現？</div>
+            <div class="right-line">✔️ <strong>觀念釐清：</strong>錯誤！塗鴉或刻字會造成古蹟與自然地貌永久損壞，屬於違法破壞行為，應秉持「除了足跡什麼都不留」的原則。</div>
+        </div>
+        
+            </div>
+        </div>
+
+        <!-- Quiz -->
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <div class="quiz-q-box">
+                    <span class="quiz-badge">⭐ 隨堂快問快答</span>
+                    <span class="quiz-q-text">在進行家鄉景觀調查時，了解景觀歷史由來的「調查四問」包含哪些？</span>
+                </div>
+                <button class="quiz-toggle-btn" onclick="toggleQuiz('q_sub-3_2')">點我看解答 👀</button>
+            </div>
+            <div id="q_sub-3_2" class="quiz-ans-text">
+                🎉 <strong>標準解答與解析：</strong>①是什麼人興建？ ②什麼時候興建？ ③名稱怎麼來的？ ④有什麼特色與歷史價值！
+            </div>
+        </div>
+    </article>
+    
+
+    <article id="sub-4_1" class="sketchnote-card card-subunit unit-group-4">
+        <div class="washi-tape washi-top-left"></div>
+        <div class="washi-tape washi-top-right"></div>
+
+        <div class="card-header-box">
+            <div class="card-group-tag">📁 第 4 單元 家鄉的節慶</div>
+            <div class="card-title-group">
+                <span class="card-badge">課次 4-1</span>
+                <h2 class="card-title">家鄉的傳統節慶</h2>
+                <span class="card-en-title">(TRADITIONAL HOMETOWN FESTIVALS)</span>
+            </div>
+            <p class="card-subtitle">漢人歲時節俗寓意、原住民族敬畏自然歲時祭儀與敬老祈福傳承</p>
+        </div>
+
+        <!-- Image Box -->
+        <div class="image-showcase-box">
+            <div class="image-wrapper" onclick="openModal('images/card_4_1.png')" title="點擊放大檢視原圖">
+                <img src="images/card_4_1.png" alt="4-1 家鄉的傳統節慶 手繪彩色鉛筆心智圖" class="doodle-image" loading="lazy">
+                <div class="zoom-hint">🔍 點擊圖片可放大高解析度檢視</div>
+            </div>
+            <div class="image-actions">
+                <span class="image-tip">🎨 100% 國小四年級社會課綱手繪彩色鉛筆粉彩心智圖（AI 生成原畫）</span>
+                <button class="action-btn copy-prompt-btn" onclick="copyPrompt('Children\'s colored pencil drawing sketchnote mind map about Grade 4 Social Studies 4-1: \'4-1 家鄉的傳統節慶\' (TRADITIONAL HOMETOWN FESTIVALS) strictly based on Taiwan Elementary School textbook. Authentic hand-drawn doodle style on cream watercolor paper, soft pastel watercolor washes, colored pencil sketch outlines. In the center, a beautiful curved rainbow gradient ribbon banner with Traditional Chinese lettering \'國小四年級社會 4-1 家鄉的傳統節慶 TRADITIONAL HOMETOWN FESTIVALS\'. Divided into 4 cute quadrant sections with numbered titles: 1. 1. 漢人春節與清明節: 年夜飯長年菜年糕、紅包壓歲錢、清明掃墓鮮花與潤餅 2. 2. 漢人端午、中元與中秋: 端午划龍舟吃肉粽掛艾草、中元普渡旗、中秋月圓柚子月餅 3. 3. 原住民族海洋與豐收祭: 達悟族彩繪拼板舟與飛魚、阿美族豐年祭傳統羽冠牽手舞 4. 4. 原住民族戰祭與祈福祭: 鄒族男子會所庫巴與聖火、布農族新生兒石項鍊. Kawaii aesthetic, smiling cute objects with rosy cheeks, soft pastel colors, educational children\'s textbook illustration.', this)">📋 複製 AI 繪圖 Prompt</button>
+            </div>
+        </div>
+
+        <!-- 4 Quadrants -->
+        <div class="mind-grid">
+            
+        <div class="mind-branch" style="background:#FEF9E7; border-color:#EAB308;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#CA8A04;">1</span>
+                <span>1. 漢人春節與清明節</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：年夜飯長年菜年糕、紅包壓歲錢、清明掃墓鮮花與潤餅</div>
+            <div class="branch-content">
+                <ul><li>春節（農曆正月初一）：除夕圍爐守歲（吃年糕象徵步步高升、長年菜象徵延年益壽）、初一拜年、初二回娘家、初五開工。</li><li>清明節（國曆4月5日前後）：掃墓整理祖先墓地、準備供品祭拜追念先人、吃潤餅。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0F9FF; border-color:#38BDF8;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#0284C7;">2</span>
+                <span>2. 漢人端午、中元與中秋</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：端午划龍舟吃肉粽掛艾草、中元普渡旗、中秋月圓柚子月餅</div>
+            <div class="branch-content">
+                <ul><li>端午節（農曆五月初五）：划龍舟競渡、吃粽子、門口插艾草菖蒲、配戴香包、洗午時水驅蟲避邪。</li><li>中元節（農曆七月十五）：舉辦普渡祭拜無人祭祀的亡魂祈求平安；中秋節（農曆八月十五）親友團圓賞月吃月餅柚子。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0FDF4; border-color:#4ADE80;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#16A34A;">3</span>
+                <span>3. 原住民族海洋與豐收祭</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：達悟族彩繪拼板舟與飛魚、阿美族豐年祭傳統羽冠牽手舞</div>
+            <div class="branch-content">
+                <ul><li>達悟族（雅美族）飛魚祭：敬重海洋環境，順應季節捕撈飛魚，展現與大自然永續共存智慧。</li><li>阿美族豐年祭：慶祝小米農作豐收，全體族人穿著傳統服飾歌舞感恩祖靈眷顧。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#FFF1F2; border-color:#FB7185;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#E11D48;">4</span>
+                <span>4. 原住民族戰祭與祈福祭</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：鄒族男子會所庫巴與聖火、布農族新生兒石項鍊</div>
+            <div class="branch-content">
+                <ul><li>鄒族戰祭（Mayasvi）：在神聖男子會所（庫巴）舉行，祭拜戰神祈求庇佑部落平安與勇氣。</li><li>布農族嬰兒祭：長輩為新生嬰兒戴上石項鍊，祈求上天保佑孩子健康平安長大。</li></ul>
+            </div>
+        </div>
+        
+        </div>
+
+        <!-- Mnemonic & Misconceptions -->
+        <div class="feature-row">
+            <div class="sticky-mnemonic">
+                <div class="sticky-pin">📌</div>
+                <div class="sticky-title">💡 朗朗上口記憶口訣</div>
+                <div class="sticky-body">「春節清明端午秋，中元普渡祈福優；飛魚豐年戰嬰兒，原民祭儀敬神州！」</div>
+            </div>
+
+            <div class="misconception-box">
+                <div class="misconception-title">🛡️ 易錯迷思避雷針（段考必背考點）</div>
+                
+        <div class="misconception-item">
+            <div class="wrong-line">❌ <strong>常見迷思：</strong>中元普渡準備豐盛祭品只是為了讓好兄弟大吃一頓，沒有其他意義？</div>
+            <div class="right-line">✔️ <strong>觀念釐清：</strong>錯誤！中元普渡體現了先民慈悲關懷孤魂、祈求家鄉全體平安和諧的博愛精神。</div>
+        </div>
+        
+            </div>
+        </div>
+
+        <!-- Quiz -->
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <div class="quiz-q-box">
+                    <span class="quiz-badge">⭐ 隨堂快問快答</span>
+                    <span class="quiz-q-text">原住民族中，長輩會在祭典時為剛出生的一歲以內嬰兒掛上石項鍊祈福的是哪一族？</span>
+                </div>
+                <button class="quiz-toggle-btn" onclick="toggleQuiz('q_sub-4_1')">點我看解答 👀</button>
+            </div>
+            <div id="q_sub-4_1" class="quiz-ans-text">
+                🎉 <strong>標準解答與解析：</strong>布農族（布農族嬰兒祭）！
+            </div>
+        </div>
+    </article>
+    
+
+    <article id="sub-4_2" class="sketchnote-card card-subunit unit-group-4">
+        <div class="washi-tape washi-top-left"></div>
+        <div class="washi-tape washi-top-right"></div>
+
+        <div class="card-header-box">
+            <div class="card-group-tag">📁 第 4 單元 家鄉的節慶</div>
+            <div class="card-title-group">
+                <span class="card-badge">課次 4-2</span>
+                <h2 class="card-title">家鄉的特色節慶活動</h2>
+                <span class="card-en-title">(SPECIAL LOCAL FESTIVALS)</span>
+            </div>
+            <p class="card-subtitle">結合地方產業與觀光、盛大民間信仰慶典、西方節慶與新住民多元文化</p>
+        </div>
+
+        <!-- Image Box -->
+        <div class="image-showcase-box">
+            <div class="image-wrapper" onclick="openModal('images/card_4_2.png')" title="點擊放大檢視原圖">
+                <img src="images/card_4_2.png" alt="4-2 家鄉的特色節慶活動 手繪彩色鉛筆心智圖" class="doodle-image" loading="lazy">
+                <div class="zoom-hint">🔍 點擊圖片可放大高解析度檢視</div>
+            </div>
+            <div class="image-actions">
+                <span class="image-tip">🎨 100% 國小四年級社會課綱手繪彩色鉛筆粉彩心智圖（AI 生成原畫）</span>
+                <button class="action-btn copy-prompt-btn" onclick="copyPrompt('Children\'s colored pencil drawing sketchnote mind map about Grade 4 Social Studies 4-2: \'4-2 家鄉的特色節慶活動\' (SPECIAL LOCAL FESTIVALS) strictly based on Taiwan Elementary School textbook. Authentic hand-drawn doodle style on cream watercolor paper, soft pastel watercolor washes, colored pencil sketch outlines. In the center, a beautiful curved rainbow gradient ribbon banner with Traditional Chinese lettering \'國小四年級社會 4-2 家鄉的特色節慶活動 SPECIAL LOCAL FESTIVALS\'. Divided into 4 cute quadrant sections with numbered titles: 1. 1. 地方產業與觀光節慶: 三義木雕藝術節木雕刀、平溪夜空天燈、宜蘭國際童玩節 2. 2. 民間宗教信仰盛典: 臺中媽祖國際觀光文化節鑾轎、東港迎王平安祭典王船 3. 3. 西方文化節慶融入: 萬聖節南瓜燈變裝服飾、耶誕節雪花耶誕樹與禮物 4. 4. 東南亞新住民多元節慶: 潑水節水槍水盆水花、水燈節美麗花朵水燈. Kawaii aesthetic, smiling cute objects with rosy cheeks, soft pastel colors, educational children\'s textbook illustration.', this)">📋 複製 AI 繪圖 Prompt</button>
+            </div>
+        </div>
+
+        <!-- 4 Quadrants -->
+        <div class="mind-grid">
+            
+        <div class="mind-branch" style="background:#FEF9E7; border-color:#EAB308;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#CA8A04;">1</span>
+                <span>1. 地方產業與觀光節慶</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：三義木雕藝術節木雕刀、平溪夜空天燈、宜蘭國際童玩節</div>
+            <div class="branch-content">
+                <ul><li>結合在地產業：苗栗縣三義國際木雕藝術節，推廣傳統木雕工藝與國際競賽。</li><li>觀光行銷：新北市平溪天燈節施放天燈祈福，吸引國內外遊客帶動地方繁榮。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0F9FF; border-color:#38BDF8;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#0284C7;">2</span>
+                <span>2. 民間宗教信仰盛典</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：臺中媽祖國際觀光文化節鑾轎、東港迎王平安祭典王船</div>
+            <div class="branch-content">
+                <ul><li>媽祖遶境：臺中媽祖國際觀光文化節，進香隊伍綿延，展現民間信仰凝聚力。</li><li>王船祭典：屏東東港迎王平安祭典，透過燒王船儀式祈求驅瘟除煞、闔家平安。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0FDF4; border-color:#4ADE80;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#16A34A;">3</span>
+                <span>3. 西方文化節慶融入</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：萬聖節南瓜燈變裝服飾、耶誕節雪花耶誕樹與禮物</div>
+            <div class="branch-content">
+                <ul><li>多元體驗：萬聖節（小朋友變裝討糖果 Trick or Treat）、耶誕節（交換禮物、傳遞愛與關懷）。</li><li>城市活動：新北歡樂耶誕城等大型燈飾節慶，成為現代人熱門聚會活動。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#FFF1F2; border-color:#FB7185;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#E11D48;">4</span>
+                <span>4. 東南亞新住民多元節慶</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：潑水節水槍水盆水花、水燈節美麗花朵水燈</div>
+            <div class="branch-content">
+                <ul><li>潑水節（宋干節）：互相潑灑清水，象徵洗去過去一年的不順利並送上誠摯祝福。</li><li>水燈節：在河流中施放裝飾鮮花與蠟燭的水燈，祈求順遂平安，展現臺灣多元包容文化。</li></ul>
+            </div>
+        </div>
+        
+        </div>
+
+        <!-- Mnemonic & Misconceptions -->
+        <div class="feature-row">
+            <div class="sticky-mnemonic">
+                <div class="sticky-pin">📌</div>
+                <div class="sticky-title">💡 朗朗上口記憶口訣</div>
+                <div class="sticky-body">「木雕天燈推觀光，媽祖遶境保家鄉；萬聖耶誕多趣味，潑水水燈祝安康！」</div>
+            </div>
+
+            <div class="misconception-box">
+                <div class="misconception-title">🛡️ 易錯迷思避雷針（段考必背考點）</div>
+                
+        <div class="misconception-item">
+            <div class="wrong-line">❌ <strong>常見迷思：</strong>在臺灣舉辦東南亞潑水節活動會破壞臺灣原有的傳統文化？</div>
+            <div class="right-line">✔️ <strong>觀念釐清：</strong>錯誤！臺灣是一個多元包容的社會，接納並尊重不同族群與新住民文化，能讓家鄉文化更加豐富多元。</div>
+        </div>
+        
+            </div>
+        </div>
+
+        <!-- Quiz -->
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <div class="quiz-q-box">
+                    <span class="quiz-badge">⭐ 隨堂快問快答</span>
+                    <span class="quiz-q-text">受東南亞新住民文化影響，在活動中藉由互相潑灑清水來洗去厄運並表達祝福的節慶活動是？</span>
+                </div>
+                <button class="quiz-toggle-btn" onclick="toggleQuiz('q_sub-4_2')">點我看解答 👀</button>
+            </div>
+            <div id="q_sub-4_2" class="quiz-ans-text">
+                🎉 <strong>標準解答與解析：</strong>潑水節（Songkran）！
+            </div>
+        </div>
+    </article>
+    
+
+    <article id="sub-4_3" class="sketchnote-card card-subunit unit-group-4">
+        <div class="washi-tape washi-top-left"></div>
+        <div class="washi-tape washi-top-right"></div>
+
+        <div class="card-header-box">
+            <div class="card-group-tag">📁 第 4 單元 家鄉的節慶</div>
+            <div class="card-title-group">
+                <span class="card-badge">課次 4-3</span>
+                <h2 class="card-title">發現生活中的節日</h2>
+                <span class="card-en-title">(DISCOVERING FESTIVALS IN DAILY LIFE)</span>
+            </div>
+            <p class="card-subtitle">感恩陪伴身分之節日、國家紀念日與提倡全球環保人權理念之現代節日</p>
+        </div>
+
+        <!-- Image Box -->
+        <div class="image-showcase-box">
+            <div class="image-wrapper" onclick="openModal('images/card_4_3.png')" title="點擊放大檢視原圖">
+                <img src="images/card_4_3.png" alt="4-3 發現生活中的節日 手繪彩色鉛筆心智圖" class="doodle-image" loading="lazy">
+                <div class="zoom-hint">🔍 點擊圖片可放大高解析度檢視</div>
+            </div>
+            <div class="image-actions">
+                <span class="image-tip">🎨 100% 國小四年級社會課綱手繪彩色鉛筆粉彩心智圖（AI 生成原畫）</span>
+                <button class="action-btn copy-prompt-btn" onclick="copyPrompt('Children\'s colored pencil drawing sketchnote mind map about Grade 4 Social Studies 4-3: \'4-3 發現生活中的節日\' (DISCOVERING FESTIVALS IN DAILY LIFE) strictly based on Taiwan Elementary School textbook. Authentic hand-drawn doodle style on cream watercolor paper, soft pastel watercolor washes, colored pencil sketch outlines. In the center, a beautiful curved rainbow gradient ribbon banner with Traditional Chinese lettering \'國小四年級社會 4-3 發現生活中的節日 DISCOVERING FESTIVALS IN DAILY LIFE\'. Divided into 4 cute quadrant sections with numbered titles: 1. 1. 感恩專屬身分與職業: 兒童節禮物、母親節康乃馨、父親節卡片、教師節鮮花、祖父母節相框 2. 2. 國家的紀念節日: 開國紀念日元旦升旗、雙十國慶日國旗飛揚與煙火 3. 3. 提倡全球進步理念: 世界地球日綠色地球植樹、國際人權日和平鴿與牽手圖標 4. 4. 生活節日探究與實踐: 桌曆翻頁、行事曆備忘錄、社區志工服務愛心徽章. Kawaii aesthetic, smiling cute objects with rosy cheeks, soft pastel colors, educational children\'s textbook illustration.', this)">📋 複製 AI 繪圖 Prompt</button>
+            </div>
+        </div>
+
+        <!-- 4 Quadrants -->
+        <div class="mind-grid">
+            
+        <div class="mind-branch" style="background:#FEF9E7; border-color:#EAB308;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#CA8A04;">1</span>
+                <span>1. 感恩專屬身分與職業</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：兒童節禮物、母親節康乃馨、父親節卡片、教師節鮮花、祖父母節相框</div>
+            <div class="branch-content">
+                <ul><li>表達愛與感謝：兒童節（4/4）、母親節（5月第2個週日）、父親節（8/8）、教師節（9/28）、祖父母節（8月第4個週日）。</li><li>感恩實踐：提醒我們要及時對長輩、師長與父母表達關懷與謝意。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0F9FF; border-color:#38BDF8;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#0284C7;">2</span>
+                <span>2. 國家的紀念節日</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：開國紀念日元旦升旗、雙十國慶日國旗飛揚與煙火</div>
+            <div class="branch-content">
+                <ul><li>元旦（1月1日）：開國紀念日，迎接新一年的開始。</li><li>國慶日（10月10日）：雙十節，紀念國家創立歷程，凝聚全民愛國向心力。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#F0FDF4; border-color:#4ADE80;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#16A34A;">3</span>
+                <span>3. 提倡全球進步理念</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：世界地球日綠色地球植樹、國際人權日和平鴿與牽手圖標</div>
+            <div class="branch-content">
+                <ul><li>世界地球日（4月22日）：宣導節能減碳、垃圾減量、綠色生活以保護地球環境。</li><li>國際人權日（12月10日）：倡導人人平等、反對歧視，保障基本人權與尊嚴。</li></ul>
+            </div>
+        </div>
+        
+
+        <div class="mind-branch" style="background:#FFF1F2; border-color:#FB7185;">
+            <div class="branch-title">
+                <span class="branch-num-badge" style="background:#E11D48;">4</span>
+                <span>4. 生活節日探究與實踐</span>
+            </div>
+            <div class="branch-elements-tag">🎨 圖解焦點：桌曆翻頁、行事曆備忘錄、社區志工服務愛心徽章</div>
+            <div class="branch-content">
+                <ul><li>探索節日：翻閱日曆發現特殊節日（如行憲紀念日、植樹節等）。</li><li>知行合一：不僅是享受放假，更要理解節日背後所傳達的價值觀並落實於日常行動。</li></ul>
+            </div>
+        </div>
+        
+        </div>
+
+        <!-- Mnemonic & Misconceptions -->
+        <div class="feature-row">
+            <div class="sticky-mnemonic">
+                <div class="sticky-pin">📌</div>
+                <div class="sticky-title">💡 朗朗上口記憶口訣</div>
+                <div class="sticky-body">「親師兒童感恩日，元旦國慶念史詩；地球人權倡理念，實踐關懷好孩子！」</div>
+            </div>
+
+            <div class="misconception-box">
+                <div class="misconception-title">🛡️ 易錯迷思避雷針（段考必背考點）</div>
+                
+        <div class="misconception-item">
+            <div class="wrong-line">❌ <strong>常見迷思：</strong>節日存在的唯一目的就是讓大家可以放假不用上學或上班？</div>
+            <div class="right-line">✔️ <strong>觀念釐清：</strong>錯誤！每個節日的設立都有其特殊的紀念意義，例如提醒我們感恩身邊親友、緬懷國家歷史或關心全球環境保護與人權。</div>
+        </div>
+        
+            </div>
+        </div>
+
+        <!-- Quiz -->
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <div class="quiz-q-box">
+                    <span class="quiz-badge">⭐ 隨堂快問快答</span>
+                    <span class="quiz-q-text">每年的 4 月 22 日是倡導節能減碳、保護自然生態環境與愛護地球的哪一個國際節日？</span>
+                </div>
+                <button class="quiz-toggle-btn" onclick="toggleQuiz('q_sub-4_3')">點我看解答 👀</button>
+            </div>
+            <div id="q_sub-4_3" class="quiz-ans-text">
+                🎉 <strong>標準解答與解析：</strong>世界地球日（Earth Day）！
+            </div>
+        </div>
+    </article>
+    
+    </section>
+</main>
+
+<!-- Image Zoom Modal -->
+<div id="imgModal" onclick="closeModal()">
+    <span id="modalClose">&times;</span>
+    <img id="modalImg" src="">
+</div>
+
+<div id="toast">✨ 已成功複製 AI 繪圖 Prompt！</div>
+
+<script>
+    var currentMode = 'subunits';
+
+    function switchMode(mode) {
+        currentMode = mode;
+        var btnMajor = document.getElementById('tabMajor');
+        var btnSub = document.getElementById('tabSubunits');
+        var secMajor = document.getElementById('majorSection');
+        var secSub = document.getElementById('subunitSection');
+        var filterBar = document.getElementById('subFilterBar');
+
+        if (mode === 'major') {
+            btnMajor.classList.add('active');
+            btnSub.classList.remove('active');
+            secMajor.style.display = 'flex';
+            secSub.style.display = 'none';
+            filterBar.style.display = 'none';
+        } else {
+            btnSub.classList.add('active');
+            btnMajor.classList.remove('active');
+            secSub.style.display = 'flex';
+            secMajor.style.display = 'none';
+            filterBar.style.display = 'flex';
+        }
+    }
+
+    function filterSubunits(grpNum, btnEl) {
+        var btns = document.querySelectorAll('#subFilterBar .filter-btn');
+        btns.forEach(function(b) { b.classList.remove('active'); });
+        btnEl.classList.add('active');
+
+        var cards = document.querySelectorAll('.card-subunit');
+        cards.forEach(function(c) {
+            if (grpNum === 'all') {
+                c.style.display = 'block';
+            } else {
+                c.style.display = c.classList.contains('unit-group-' + grpNum) ? 'block' : 'none';
+            }
+        });
+    }
+
+    function toggleQuiz(id) {
+        var el = document.getElementById(id);
+        if (el.style.display === 'block') {
+            el.style.display = 'none';
+        } else {
+            el.style.display = 'block';
+        }
+    }
+
+    function copyPrompt(promptText, btnEl) {
+        navigator.clipboard.writeText(promptText).then(function() {
+            showToast("✨ 已成功複製 AI 繪圖 Prompt！");
+            var originalText = btnEl.innerText;
+            btnEl.innerText = "✅ 複製成功！";
+            setTimeout(function() {
+                btnEl.innerText = originalText;
+            }, 2000);
+        }).catch(function(err) {
+            console.error('Copy failed', err);
+        });
+    }
+
+    function showToast(msg) {
+        var x = document.getElementById("toast");
+        x.innerText = msg;
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2800);
+    }
+
+    function openModal(imgSrc) {
+        var modal = document.getElementById("imgModal");
+        var modalImg = document.getElementById("modalImg");
+        modal.style.display = "flex";
+        modalImg.src = imgSrc;
+    }
+
+    function closeModal() {
+        document.getElementById("imgModal").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
